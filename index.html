@@ -440,26 +440,43 @@
       </div>
 
       <div class="video-grid">
-      <a class="video-card" href="https://youtu.be/0RLDs0jtfZ4?si=W3x6BuF9PuRHaDH9" target="_blank" rel="noopener">
-  <div class="preview">
-    <!-- Если хочешь использовать реальное изображение вместо SVG, замени этот блок на <img src="images/preview1.jpg" alt="Projet Intro Vidéo"> -->
-    <img src="images/TBEC.png" alt="Projet Intro Vidéo">
-      <rect width="400" height="220" fill="url(#gradient1)"/>
-      <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
-      <polygon points="188,95 188,125 215,110" fill="#5eb3cd"/>
-      <defs>
-        <linearGradient id="gradient1" x1="0%" y1="0%" x2="100%" y2="100%">
-          <stop offset="0%" style="stop-color:#e8f4f8;stop-opacity:1" />
-          <stop offset="100%" style="stop-color:#5eb3cd;stop-opacity:0.3" />
-        </linearGradient>
-      </defs>
-    </svg>
+     <a class="video-card" href="https://youtu.be/0RLDs0jtfZ4?si=W3x6BuF9PuRHaDH9" target="_blank" rel="noopener">
+  <div class="preview" style="position: relative;">
+    <!-- Превью -->
+    <img src="images/TBEC.png" alt="Intro corporate — projet créatif" style="width:100%; height:100%; object-fit:cover; display:block;">
+    
+    <!-- Кнопка "play" поверх превью -->
+    <div style="
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60px;
+      height: 60px;
+      background: rgba(255,255,255,0.8);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+    ">
+      <div style="
+        width: 0; 
+        height: 0; 
+        border-left: 20px solid #5eb3cd; 
+        border-top: 12px solid transparent; 
+        border-bottom: 12px solid transparent;
+      "></div>
+    </div>
+
+    <!-- Overlay при наведении -->
     <div class="overlay">
       <span>Développement de l'intro à partir de références en couleurs corporatives, étalonnage et correction audio</span>
     </div>
   </div>
   <div class="video-description">Intro corporate — projet créatif</div>
 </a>
+
 
 
         <a class="video-card" href="#" target="_blank" rel="noopener">
