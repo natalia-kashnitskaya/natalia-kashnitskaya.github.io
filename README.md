@@ -1,1 +1,593 @@
-# natalia-kashnitskaya.github.io
+<!-- v. 2025-09-11 -->
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Natalia Kashnitskaya — videos</title>
+  <meta name="description" content="Portfolio de Natalia Kashnitskaya — monteuse vidéo." />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      line-height: 1.6;
+      color: #4a4a4a;
+      background: #f8f6f4;
+      min-height: 100vh;
+    }
+
+    .visually-hidden {
+      position: absolute !important;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    /* Header - минималистичный стиль как на втором референсе */
+    .site-header {
+      background: white;
+      padding: 40px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      border: 3px solid #e8f4f8;
+      background: #5eb3cd;
+    }
+
+    .titles {
+      color: #4a4a4a;
+    }
+
+    .site-title {
+      font-size: 2rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      color: #2c3e50;
+    }
+
+    .site-subtitle {
+      font-size: 1rem;
+      font-weight: 400;
+      color: #7f8c8d;
+      text-transform: capitalize;
+    }
+
+    .contact-button {
+      background: #5eb3cd;
+      color: white;
+      text-decoration: none;
+      padding: 12px 24px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      text-transform: uppercase;
+      font-size: 0.9rem;
+      letter-spacing: 0.5px;
+    }
+
+    .contact-button:hover {
+      background: #4a9bb8;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 15px rgba(94, 179, 205, 0.3);
+    }
+
+    /* Contact info - скрыто по умолчанию, показывается при клике */
+    .contacts {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 40px;
+      border-radius: 15px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+      display: none;
+      text-align: center;
+      font-style: normal;
+    }
+
+    .contacts.show {
+      display: block;
+    }
+
+    .contacts h3 {
+      margin-bottom: 20px;
+      color: #2c3e50;
+    }
+
+    .contact-link {
+      display: block;
+      color: #5eb3cd;
+      text-decoration: none;
+      padding: 10px 0;
+      font-size: 1.1rem;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .contact-link:last-child {
+      border-bottom: none;
+    }
+
+    .contact-link:hover {
+      color: #4a9bb8;
+    }
+
+    .close-contacts {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      background: none;
+      border: none;
+      font-size: 24px;
+      color: #999;
+      cursor: pointer;
+    }
+
+    .overlay-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.5);
+      z-index: 999;
+      display: none;
+    }
+
+    .overlay-bg.show {
+      display: block;
+    }
+
+    /* Content area */
+    .content {
+      padding: 60px 0;
+      min-height: 50vh;
+    }
+
+    /* Navigation tabs - стиль как на втором референсе */
+    .main-nav {
+      display: flex;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+
+    .main-nav ul {
+      list-style: none;
+      display: flex;
+      gap: 60px;
+      position: relative;
+    }
+
+    .main-nav a {
+      text-decoration: none;
+      color: #7f8c8d;
+      font-weight: 500;
+      font-size: 1.1rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      padding: 15px 0;
+      position: relative;
+      transition: color 0.3s ease;
+    }
+
+    .main-nav a.active {
+      color: #5eb3cd;
+    }
+
+    .main-nav a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: #5eb3cd;
+      border-radius: 2px;
+    }
+
+    .main-nav a:hover {
+      color: #5eb3cd;
+    }
+
+    /* Introduction text */
+    .intro-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 80px auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #6c757d;
+    }
+
+    /* Video Gallery */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 40px;
+    }
+
+    .video-card {
+      text-decoration: none;
+      color: inherit;
+      display: block;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      border-radius: 12px;
+      overflow: hidden;
+      background: white;
+      box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    }
+
+    .video-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+    }
+
+    .preview {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      overflow: hidden;
+      background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
+    }
+
+    .preview svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: rgba(255, 255, 255, 0.95);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .overlay span {
+      color: #5eb3cd;
+      font-weight: 600;
+      font-size: 1rem;
+      line-height: 1.4;
+    }
+
+    .video-card:hover .overlay {
+      opacity: 1;
+    }
+
+    .video-description {
+      padding: 25px;
+      font-size: 1rem;
+      font-weight: 500;
+      text-align: center;
+      color: #4a4a4a;
+    }
+
+    /* Page content for placeholder pages */
+    .page-placeholder {
+      text-align: center;
+      padding: 100px 20px;
+      color: #666;
+    }
+
+    .page-placeholder h1 {
+      font-size: 3rem;
+      margin-bottom: 20px;
+      color: #5eb3cd;
+      font-weight: 300;
+    }
+
+    .page-placeholder p {
+      font-size: 1.2rem;
+      opacity: 0.7;
+    }
+
+    /* Footer */
+    .site-footer {
+      background: white;
+      border-top: 1px solid #f0f0f0;
+      text-align: center;
+      padding: 40px 20px;
+      margin-top: 80px;
+    }
+
+    .site-footer small {
+      font-size: 0.9rem;
+      color: #999;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .header-inner {
+        flex-direction: column;
+        gap: 30px;
+        text-align: center;
+      }
+
+      .brand {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .site-title {
+        font-size: 1.8rem;
+      }
+
+      .main-nav ul {
+        gap: 30px;
+        flex-wrap: wrap;
+      }
+
+      .intro-text {
+        font-size: 1.1rem;
+        margin-bottom: 60px;
+      }
+
+      .video-grid {
+        grid-template-columns: 1fr;
+        gap: 30px;
+      }
+
+      .content {
+        padding: 40px 0;
+      }
+
+      .contacts {
+        padding: 30px;
+        margin: 20px;
+        width: calc(100% - 40px);
+        left: 20px;
+        right: 20px;
+        transform: translateY(-50%);
+      }
+    }
+
+    @media (max-width: 480px) {
+      .site-title {
+        font-size: 1.6rem;
+      }
+
+      .main-nav ul {
+        gap: 20px;
+      }
+
+      .main-nav a {
+        font-size: 1rem;
+      }
+
+      .preview {
+        height: 200px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-inner container">
+      <div class="brand">
+         <img src="images/Наташа офис2.png" alt="Natalia Kashnitskaya" class="avatar">
+        <div class="titles">
+          <h1 class="site-title">Natalia Kashnitskaya</h1>
+          <p class="site-subtitle">Monteuse Vidéo</p>
+        </div>
+      </div>
+      <a href="#" class="contact-button" id="contact-btn">Me Contacter</a>
+    </div>
+  </header>
+
+  <!-- Contact Modal -->
+  <div class="overlay-bg" id="overlay"></div>
+  <address class="contacts" id="contacts-modal">
+    <button class="close-contacts" id="close-btn">&times;</button>
+    <h3>Contactez-moi</h3>
+    <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">n.kashnitskaya@gmail.com</a>
+    <a href="https://t.me/taygeta505" target="_blank" rel="noopener" class="contact-link">@taygeta505</a>
+  </address>
+
+  <main class="content container">
+    <nav class="main-nav">
+      <ul>
+        <li><a href="#" data-page="videos" class="active">Montage</a></li>
+        <li><a href="#" data-page="photos">Photo</a></li>
+        <li><a href="#" data-page="univers">Mon Univers</a></li>
+      </ul>
+    </nav>
+
+    <section id="videos-section" class="video-gallery" aria-labelledby="videos-heading">
+      <h2 id="videos-heading" class="visually-hidden">Vidéos</h2>
+      
+      <div class="intro-text">
+        Je m'engage dans chaque projet avec sérieux, en respectant vos délais et votre vision pour obtenir un résultat qui dépasse vos attentes.
+      </div>
+
+      <div class="video-grid">
+    <a class="video-card" href="https://youtu.be/0RLDs0jtfZ4?si=W3x6BuF9PuRHaDH9" target="_blank" rel="noopener">
+  <div class="preview" style="position: relative;">
+    <!-- Превью -->
+    <img src="images/TBEC.png" alt="Intro corporate — projet créatif" style="width:100%; height:100%; object-fit:cover; display:block;">
+
+<!-- Overlay при наведении -->
+<div class="overlay" style="display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start; background:rgba(255,255,255,0.95); padding:20px 20px 20px 20px; border-radius:10px; width:100%; box-sizing:border-box;">
+  <div style="margin-top:10px; margin-left:10px; margin-bottom:15px; color:#1a3b5d; line-height:1.4; font-size:12pt; text-align:left;">
+    Conception et animation du générique<br>
+    Création d’infographies animées<br>
+    Amélioration de la qualité d’image et du son<br>
+    Découpage et structuration des interviews<br>
+    Intégration de cartouches et titres<br>
+    Création et ajout manuel de sous-titres
+  </div>
+  <span style="background:#5eb3cd; color:white; padding:8px 16px; border-radius:20px; font-weight:500; cursor:pointer; align-self:center;">Voir</span>
+</div>
+</div>
+<div class="video-description">Montage vidéo corporate/entreprise</div>
+</a>
+
+        <a class="video-card" href="#" target="_blank" rel="noopener">
+          <div class="preview">
+            <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="220" fill="url(#gradient2)"/>
+              <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
+              <polygon points="188,95 188,125 215,110" fill="#5eb3cd"/>
+              <defs>
+                <linearGradient id="gradient2" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#f8f6f4;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#e8b4b8;stop-opacity:0.4" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="overlay"><span>Montage publicitaire avec effets dynamiques</span></div>
+          </div>
+          <div class="video-description">Publicité commerciale</div>
+        </a>
+
+        <a class="video-card" href="#" target="_blank" rel="noopener">
+          <div class="preview">
+            <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
+              <rect width="400" height="220" fill="url(#gradient3)"/>
+              <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
+              <polygon points="188,95 188,125 215,110" fill="#5eb3cd"/>
+              <defs>
+                <linearGradient id="gradient3" x1="0%" y1="0%" x2="100%" y2="100%">
+                  <stop offset="0%" style="stop-color:#d1ecf1;stop-opacity:1" />
+                  <stop offset="100%" style="stop-color:#5eb3cd;stop-opacity:0.5" />
+                </linearGradient>
+              </defs>
+            </svg>
+            <div class="overlay"><span>Documentaire avec narration et transitions fluides</span></div>
+          </div>
+          <div class="video-description">Documentaire court</div>
+        </a>
+      </div>
+    </section>
+
+    <section id="photos-section" class="page-placeholder" style="display: none;">
+      <h1>Photo</h1>
+      <p>Galerie photo en cours de développement</p>
+    </section>
+
+    <section id="univers-section" class="page-placeholder" style="display: none;">
+      <h1>Mon Univers</h1>
+      <p>Découvrez mon univers créatif</p>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <small>© <span id="year">2025</span> Natalia Kashnitskaya</small>
+    </div>
+  </footer>
+
+  <script>
+    // Set current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Contact modal functionality
+    const contactBtn = document.getElementById('contact-btn');
+    const contactsModal = document.getElementById('contacts-modal');
+    const overlay = document.getElementById('overlay');
+    const closeBtn = document.getElementById('close-btn');
+
+    function showModal() {
+      contactsModal.classList.add('show');
+      overlay.classList.add('show');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function hideModal() {
+      contactsModal.classList.remove('show');
+      overlay.classList.remove('show');
+      document.body.style.overflow = '';
+    }
+
+    contactBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      showModal();
+    });
+
+    closeBtn.addEventListener('click', hideModal);
+    overlay.addEventListener('click', hideModal);
+
+    // Close modal on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        hideModal();
+      }
+    });
+
+    // Navigation functionality
+    const navLinks = document.querySelectorAll('.main-nav a');
+    const sections = {
+      'videos': document.getElementById('videos-section'),
+      'photos': document.getElementById('photos-section'),
+      'univers': document.getElementById('univers-section')
+    };
+
+    navLinks.forEach(link => {
+      link.addEventListener('click', (e) => {
+        e.preventDefault();
+        
+        // Remove active class from all links
+        navLinks.forEach(l => l.classList.remove('active'));
+        
+        // Add active class to clicked link
+        link.classList.add('active');
+        
+        // Hide all sections
+        Object.values(sections).forEach(section => {
+          if (section) section.style.display = 'none';
+        });
+        
+        // Show selected section
+        const page = link.getAttribute('data-page');
+        if (sections[page]) {
+          sections[page].style.display = 'block';
+        }
+      });
+    });
+
+    // Smooth scroll behavior
+    document.documentElement.style.scrollBehavior = 'smooth';
+  </script>
+</body>
+</html>
