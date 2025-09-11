@@ -244,10 +244,11 @@
       display: block;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-radius: 12px;
-      overflow: visible; /* Изменено чтобы кнопка могла выходить за границы */
+      overflow: visible;
       background: white;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
       position: relative;
+      cursor: pointer;
     }
 
     .video-card:hover {
@@ -288,13 +289,13 @@
       border-radius: 10px;
       margin: 10px;
       box-sizing: border-box;
-      /* Добавляем нижний отступ, чтобы не перекрывать кнопку */
       padding-bottom: 50px;
       pointer-events: none;
     }
 
     .video-card:hover .overlay {
       pointer-events: auto;
+      opacity: 1;
     }
 
     .overlay-text {
@@ -307,10 +308,6 @@
       text-align: left;
     }
 
-    .video-card:hover .overlay {
-      opacity: 1;
-    }
-
     .video-description {
       padding: 25px;
       font-size: 1rem;
@@ -318,15 +315,21 @@
       text-align: center;
       color: #4a4a4a;
       border-radius: 0 0 12px 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      cursor: pointer;
     }
 
-    /* Кнопка воспроизведения */
+    .video-description-text {
+      flex: 1;
+    }
+
+    /* Кнопка воспроизведения - в описании слева от текста */
     .play-button {
-      position: absolute;
-      top: 15px;
-      left: 15px;
-      width: 40px;
-      height: 40px;
+      width: 30px;
+      height: 30px;
       background: #5eb3cd;
       border: none;
       border-radius: 50%;
@@ -335,50 +338,25 @@
       align-items: center;
       justify-content: center;
       transition: all 0.3s ease;
-      z-index: 15;
-      box-shadow: 0 2px 10px rgba(94, 179, 205, 0.3);
+      box-shadow: 0 2px 8px rgba(94, 179, 205, 0.3);
+      margin-right: 10px;
+      flex-shrink: 0;
     }
 
     .play-button:hover {
       background: #4a9bb8;
       transform: scale(1.1);
-      box-shadow: 0 4px 15px rgba(94, 179, 205, 0.5);
+      box-shadow: 0 4px 12px rgba(94, 179, 205, 0.5);
     }
 
     .play-button::after {
       content: '';
       width: 0;
       height: 0;
-      border-left: 12px solid white;
-      border-top: 8px solid transparent;
-      border-bottom: 8px solid transparent;
+      border-left: 10px solid white;
+      border-top: 6px solid transparent;
+      border-bottom: 6px solid transparent;
       margin-left: 2px;
-    }
-
-    /* Всегда видимая кнопка "Voir" */
-    .voir-button {
-      position: absolute;
-      bottom: 25px; /* Располагаем на уровне описания */
-      left: 50%;
-      transform: translateX(-50%);
-      background: #5eb3cd;
-      color: white;
-      padding: 8px 16px;
-      border-radius: 20px;
-      font-weight: 500;
-      cursor: pointer;
-      z-index: 10; /* Поверх overlay */
-      transition: all 0.3s ease;
-      text-decoration: none;
-      font-size: 0.9rem;
-      border: none;
-      box-shadow: 0 2px 8px rgba(94, 179, 205, 0.3);
-    }
-
-    .voir-button:hover {
-      background: #4a9bb8;
-      transform: translateX(-50%) translateY(-2px);
-      box-shadow: 0 4px 12px rgba(94, 179, 205, 0.4);
     }
 
     /* Page content for placeholder pages */
@@ -460,7 +438,7 @@
       }
 
       .overlay-text {
-        font-size: 11pt; /* Уменьшаем шрифт на планшетах */
+        font-size: 11pt;
       }
     }
 
@@ -523,15 +501,10 @@
       </div>
 
       <div class="video-grid">
-        <div class="video-card">
+        <div class="video-card" data-video-url="https://youtu.be/0RLDs0jtfZ4?si=NzXCTG5DR3SvBRNS">
           <div class="preview" style="position: relative;">
-            <!-- Кнопка воспроизведения -->
-            <button class="play-button" aria-label="Lancer la vidéo"></button>
-            
-            <!-- Превью -->
             <img src="images/TBEC.png" alt="Intro corporate — projet créatif" style="width:100%; height:100%; object-fit:cover; display:block;">
 
-            <!-- Overlay при наведении -->
             <div class="overlay">
               <div class="overlay-text">
                 - conception et animation du générique<br>
@@ -544,14 +517,14 @@
             </div>
           </div>
           
-          <div class="video-description">Montage vidéo corporate/entreprise</div>
+          <div class="video-description">
+            <button class="play-button" aria-label="Lancer la vidéo"></button>
+            <span class="video-description-text">Montage vidéo corporate/entreprise</span>
+          </div>
         </div>
 
-        <a class="video-card" href="#" target="_blank" rel="noopener">
+        <div class="video-card" data-video-url="#">
           <div class="preview">
-            <!-- Кнопка воспроизведения -->
-            <button class="play-button" aria-label="Lancer la vidéo"></button>
-            
             <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
               <rect width="400" height="220" fill="url(#gradient2)"/>
               <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
@@ -565,14 +538,14 @@
             </svg>
             <div class="overlay"><div class="overlay-text">Montage publicitaire avec effets dynamiques</div></div>
           </div>
-          <div class="video-description">Publicité commerciale</div>
-        </a>
-
-        <a class="video-card" href="#" target="_blank" rel="noopener">
-          <div class="preview">
-            <!-- Кнопка воспроизведения -->
+          <div class="video-description">
             <button class="play-button" aria-label="Lancer la vidéo"></button>
-            
+            <span class="video-description-text">Publicité commerciale</span>
+          </div>
+        </div>
+
+        <div class="video-card" data-video-url="#">
+          <div class="preview">
             <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
               <rect width="400" height="220" fill="url(#gradient3)"/>
               <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
@@ -586,8 +559,11 @@
             </svg>
             <div class="overlay"><div class="overlay-text">Documentaire avec narration et transitions fluides</div></div>
           </div>
-          <div class="video-description">Documentaire court</div>
-        </a>
+          <div class="video-description">
+            <button class="play-button" aria-label="Lancer la vidéo"></button>
+            <span class="video-description-text">Documentaire court</span>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -676,16 +652,40 @@
       });
     });
 
-    // Video preview click functionality
-    const videoPreviews = document.querySelectorAll('.preview');
+    // Video click functionality - открытие YouTube видео
+    const videoCards = document.querySelectorAll('.video-card');
     
-    videoPreviews.forEach(preview => {
-      preview.addEventListener('click', (e) => {
-        // Здесь можно добавить логику запуска видео
-        // Например, открыть модальное окно с видеоплеером или перейти к видео
-        console.log('Видео запущено!');
-        alert('Функция воспроизведения видео будет добавлена позже');
-      });
+    videoCards.forEach(card => {
+      const preview = card.querySelector('.preview');
+      const playButton = card.querySelector('.play-button');
+      const description = card.querySelector('.video-description');
+      const videoUrl = card.getAttribute('data-video-url');
+      
+      function openVideo(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        if (videoUrl && videoUrl !== '#') {
+          window.open(videoUrl, '_blank');
+        } else {
+          alert('URL vidéo sera ajoutée prochainement');
+        }
+      }
+      
+      // Клик по превью
+      if (preview) {
+        preview.addEventListener('click', openVideo);
+      }
+      
+      // Клик по кнопке play
+      if (playButton) {
+        playButton.addEventListener('click', openVideo);
+      }
+      
+      // Клик по описанию
+      if (description) {
+        description.addEventListener('click', openVideo);
+      }
     });
 
     // Smooth scroll behavior
