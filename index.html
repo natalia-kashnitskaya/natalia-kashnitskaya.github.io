@@ -244,9 +244,10 @@
       display: block;
       transition: transform 0.3s ease, box-shadow 0.3s ease;
       border-radius: 12px;
-      overflow: hidden;
+      overflow: visible; /* Изменено чтобы кнопка могла выходить за границы */
       background: white;
       box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+      position: relative;
     }
 
     .video-card:hover {
@@ -260,6 +261,8 @@
       height: 220px;
       overflow: hidden;
       background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
+      border-radius: 12px 12px 0 0;
+      cursor: pointer;
     }
 
     .preview svg {
@@ -275,19 +278,33 @@
       bottom: 0;
       background: rgba(255, 255, 255, 0.95);
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: flex-start;
       opacity: 0;
       transition: opacity 0.3s ease;
-      text-align: center;
-      padding: 30px;
+      text-align: left;
+      padding: 20px;
+      border-radius: 10px;
+      margin: 10px;
+      box-sizing: border-box;
+      /* Добавляем нижний отступ, чтобы не перекрывать кнопку */
+      padding-bottom: 50px;
+      pointer-events: none;
     }
 
-    .overlay span {
-      color: #5eb3cd;
-      font-weight: 600;
-      font-size: 1rem;
+    .video-card:hover .overlay {
+      pointer-events: auto;
+    }
+
+    .overlay-text {
+      margin-top: 10px;
+      margin-left: 10px;
+      margin-bottom: 15px;
+      color: #1a3b5d;
       line-height: 1.4;
+      font-size: 12pt;
+      text-align: left;
     }
 
     .video-card:hover .overlay {
@@ -300,6 +317,68 @@
       font-weight: 500;
       text-align: center;
       color: #4a4a4a;
+      border-radius: 0 0 12px 12px;
+    }
+
+    /* Кнопка воспроизведения */
+    .play-button {
+      position: absolute;
+      top: 15px;
+      left: 15px;
+      width: 40px;
+      height: 40px;
+      background: #5eb3cd;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      z-index: 15;
+      box-shadow: 0 2px 10px rgba(94, 179, 205, 0.3);
+    }
+
+    .play-button:hover {
+      background: #4a9bb8;
+      transform: scale(1.1);
+      box-shadow: 0 4px 15px rgba(94, 179, 205, 0.5);
+    }
+
+    .play-button::after {
+      content: '';
+      width: 0;
+      height: 0;
+      border-left: 12px solid white;
+      border-top: 8px solid transparent;
+      border-bottom: 8px solid transparent;
+      margin-left: 2px;
+    }
+
+    /* Всегда видимая кнопка "Voir" */
+    .voir-button {
+      position: absolute;
+      bottom: 25px; /* Располагаем на уровне описания */
+      left: 50%;
+      transform: translateX(-50%);
+      background: #5eb3cd;
+      color: white;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-weight: 500;
+      cursor: pointer;
+      z-index: 10; /* Поверх overlay */
+      transition: all 0.3s ease;
+      text-decoration: none;
+      font-size: 0.9rem;
+      border: none;
+      box-shadow: 0 2px 8px rgba(94, 179, 205, 0.3);
+    }
+
+    .voir-button:hover {
+      background: #4a9bb8;
+      transform: translateX(-50%) translateY(-2px);
+      box-shadow: 0 4px 12px rgba(94, 179, 205, 0.4);
     }
 
     /* Page content for placeholder pages */
@@ -379,6 +458,10 @@
         right: 20px;
         transform: translateY(-50%);
       }
+
+      .overlay-text {
+        font-size: 11pt; /* Уменьшаем шрифт на планшетах */
+      }
     }
 
     @media (max-width: 480px) {
@@ -440,29 +523,35 @@
       </div>
 
       <div class="video-grid">
-    <a class="video-card" href="https://youtu.be/0RLDs0jtfZ4?si=W3x6BuF9PuRHaDH9" target="_blank" rel="noopener">
-  <div class="preview" style="position: relative;">
-    <!-- Превью -->
-    <img src="images/TBEC.png" alt="Intro corporate — projet créatif" style="width:100%; height:100%; object-fit:cover; display:block;">
+        <div class="video-card">
+          <div class="preview" style="position: relative;">
+            <!-- Кнопка воспроизведения -->
+            <button class="play-button" aria-label="Lancer la vidéo"></button>
+            
+            <!-- Превью -->
+            <img src="images/TBEC.png" alt="Intro corporate — projet créatif" style="width:100%; height:100%; object-fit:cover; display:block;">
 
-<!-- Overlay при наведении -->
-<div class="overlay" style="display:flex; flex-direction:column; justify-content:flex-start; align-items:flex-start; background:rgba(255,255,255,0.95); padding:20px 20px 20px 20px; border-radius:10px; width:100%; box-sizing:border-box;">
-  <div style="margin-top:10px; margin-left:10px; margin-bottom:15px; color:#1a3b5d; line-height:1.4; font-size:12pt; text-align:left;">
-    Conception et animation du générique<br>
-    Création d’infographies animées<br>
-    Amélioration de la qualité d’image et du son<br>
-    Découpage et structuration des interviews<br>
-    Intégration de cartouches et titres<br>
-    Création et ajout manuel de sous-titres
-  </div>
-  <span style="background:#5eb3cd; color:white; padding:8px 16px; border-radius:20px; font-weight:500; cursor:pointer; align-self:center;">Voir</span>
-</div>
-</div>
-<div class="video-description">Montage vidéo corporate/entreprise</div>
-</a>
+            <!-- Overlay при наведении -->
+            <div class="overlay">
+              <div class="overlay-text">
+                Conception et animation du générique<br>
+                Création d'infographies animées<br>
+                Amélioration de la qualité d'image et du son<br>
+                Découpage et structuration des interviews<br>
+                Intégration de cartouches et titres<br>
+                Création et ajout manuel de sous-titres
+              </div>
+            </div>
+          </div>
+          
+          <div class="video-description">Montage vidéo corporate/entreprise</div>
+        </div>
 
         <a class="video-card" href="#" target="_blank" rel="noopener">
           <div class="preview">
+            <!-- Кнопка воспроизведения -->
+            <button class="play-button" aria-label="Lancer la vidéo"></button>
+            
             <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
               <rect width="400" height="220" fill="url(#gradient2)"/>
               <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
@@ -474,13 +563,16 @@
                 </linearGradient>
               </defs>
             </svg>
-            <div class="overlay"><span>Montage publicitaire avec effets dynamiques</span></div>
+            <div class="overlay"><div class="overlay-text">Montage publicitaire avec effets dynamiques</div></div>
           </div>
           <div class="video-description">Publicité commerciale</div>
         </a>
 
         <a class="video-card" href="#" target="_blank" rel="noopener">
           <div class="preview">
+            <!-- Кнопка воспроизведения -->
+            <button class="play-button" aria-label="Lancer la vidéo"></button>
+            
             <svg viewBox="0 0 400 220" xmlns="http://www.w3.org/2000/svg">
               <rect width="400" height="220" fill="url(#gradient3)"/>
               <circle cx="200" cy="110" r="30" fill="white" opacity="0.9"/>
@@ -492,7 +584,7 @@
                 </linearGradient>
               </defs>
             </svg>
-            <div class="overlay"><span>Documentaire avec narration et transitions fluides</span></div>
+            <div class="overlay"><div class="overlay-text">Documentaire avec narration et transitions fluides</div></div>
           </div>
           <div class="video-description">Documentaire court</div>
         </a>
@@ -581,6 +673,18 @@
         if (sections[page]) {
           sections[page].style.display = 'block';
         }
+      });
+    });
+
+    // Video preview click functionality
+    const videoPreviews = document.querySelectorAll('.preview');
+    
+    videoPreviews.forEach(preview => {
+      preview.addEventListener('click', (e) => {
+        // Здесь можно добавить логику запуска видео
+        // Например, открыть модальное окно с видеоплеером или перейти к видео
+        console.log('Видео запущено!');
+        alert('Функция воспроизведения видео будет добавлена позже');
       });
     });
 
