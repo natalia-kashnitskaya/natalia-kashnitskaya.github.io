@@ -291,6 +291,33 @@
       box-sizing: border-box;
       padding-bottom: 50px;
       pointer-events: none;
+      overflow-y: auto;
+      overflow-x: hidden;
+    }
+
+    /* Custom scrollbar for webkit browsers */
+    .overlay::-webkit-scrollbar {
+      width: 4px;
+    }
+
+    .overlay::-webkit-scrollbar-track {
+      background: transparent;
+    }
+
+    .overlay::-webkit-scrollbar-thumb {
+      background: rgba(94, 179, 205, 0.4);
+      border-radius: 2px;
+      transition: background 0.3s ease;
+    }
+
+    .overlay::-webkit-scrollbar-thumb:hover {
+      background: rgba(94, 179, 205, 0.7);
+    }
+
+    /* Firefox scrollbar styling */
+    .overlay {
+      scrollbar-width: thin;
+      scrollbar-color: rgba(94, 179, 205, 0.4) transparent;
     }
 
     .video-card:hover .overlay {
@@ -525,7 +552,7 @@
                 - amélioration de la qualité d'image/son<br>
                 - découpage et structuration des interviews<br>
                 - intégration de cartouches et titres<br>
-                - création et ajout manuel de sous-titres
+                - création et ajout manuel de sous-titres<br>
               </div>
             </div>
           </div>
@@ -543,11 +570,13 @@
     <div class="overlay">
       <div class="overlay-text">
         - défi créatif : fusion de trois films différents en une narration cohérente<br>
-        - développement d’une concept originale pour le projet<br>
+        - développement d'une concept originale pour le projet<br>
         - sélection et découpage des extraits les plus significatifs<br>
-        - choix de la musique en harmonie avec le rythme et l’ambiance<br>
+        - choix de la musique en harmonie avec le rythme et l'ambiance<br>
         - application de techniques artistiques variées pour enrichir le récit<br>
-        - création d’une narration émotionnelle sans paroles afin de maximiser l’impact visuel
+        - création d'une narration émotionnelle sans paroles afin de maximiser l'impact visuel<br>
+        - optimisation du timing pour maintenir l'attention<br>
+        - création d'un arc narratif complet et satisfaisant
       </div>
     </div>
   </div>
@@ -563,12 +592,14 @@
     <img src="images/preview war.png" alt="сlip documentaire «La Route de la Haine»" style="width:100%; height:100%; object-fit:cover; display:block;">
     <div class="overlay">
       <div class="overlay-text">
-        - montage d’un clip à partir d’archives historiques<br>
-        - création d’une narration émotionnelle sans paroles<br>
+        - montage d'un clip à partir d'archives historiques<br>
+        - création d'une narration émotionnelle sans paroles<br>
         - sélection et découpage de chroniques de guerre<br>
-        - intégration d’extraits de films documentaires<br>
+        - intégration d'extraits de films documentaires<br>
         - recherche et choix de la musique<br>
-        - synchronisation précise entre la bande sonore et le rythme visuel
+        - synchronisation précise entre la bande sonore et le rythme visuel<br>
+        - création d'une progression dramatique cohérente<br>
+        - utilisation de techniques de montage pour renforcer l'émotion
       </div>
     </div>
   </div>
