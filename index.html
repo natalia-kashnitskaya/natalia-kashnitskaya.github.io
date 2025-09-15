@@ -5,6 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Natalia Kashnitskaya — videos</title>
   <meta name="description" content="Portfolio de Natalia Kashnitskaya — monteuse vidéo." />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -13,7 +16,7 @@
     }
 
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      font-family: 'Inter', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       line-height: 1.6;
       color: #4a4a4a;
       background: #f8f6f4;
@@ -60,11 +63,22 @@
       width: 180px;
       height: 180px;
       border-radius: 50%;
-      background: linear-gradient(135deg, #3DA7B1, #C63D6A, #E9742B);
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
       padding: 6px;
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       position: relative;
       overflow: hidden;
+      animation: gradientShift 4s ease-in-out infinite;
+    }
+
+    @keyframes gradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
     .avatar::before {
@@ -95,103 +109,88 @@
     }
 
     .site-title {
-      font-size: 2rem;
+      font-family: 'Playfair Display', serif;
+      font-size: 2.2rem;
       font-weight: 600;
-      margin-bottom: 5px;
+      margin-bottom: 8px;
       color: #2c3e50;
+      letter-spacing: -0.5px;
     }
 
     .site-subtitle {
-      font-size: 1rem;
-      font-weight: 400;
+      font-family: 'Inter', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 300;
       color: #7f8c8d;
-      text-transform: capitalize;
-    }
-
-    .contact-button {
-      background: #5eb3cd;
-      color: white;
-      text-decoration: none;
-      padding: 12px 24px;
-      border-radius: 25px;
-      font-weight: 500;
-      transition: all 0.3s ease;
-      text-transform: uppercase;
-      font-size: 0.9rem;
       letter-spacing: 0.5px;
+      text-transform: lowercase;
     }
 
-    .contact-button:hover {
-      background: #4a9bb8;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 15px rgba(94, 179, 205, 0.3);
-    }
-
-    .contacts {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: white;
-      padding: 40px;
-      border-radius: 15px;
-      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-      z-index: 1000;
-      display: none;
-      text-align: center;
-      font-style: normal;
-    }
-
-    .contacts.show {
-      display: block;
-    }
-
-    .contacts h3 {
-      margin-bottom: 20px;
-      color: #2c3e50;
+    .contact-links {
+      display: flex;
+      gap: 20px;
+      align-items: center;
     }
 
     .contact-link {
-      display: block;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: white;
       color: #5eb3cd;
       text-decoration: none;
-      padding: 10px 0;
-      font-size: 1.1rem;
-      border-bottom: 1px solid #f0f0f0;
-    }
-
-    .contact-link:last-child {
-      border-bottom: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      border: 2px solid #5eb3cd;
+      box-shadow: 0 2px 10px rgba(94, 179, 205, 0.1);
+      min-width: 120px;
+      min-height: 44px;
     }
 
     .contact-link:hover {
-      color: #4a9bb8;
+      color: white;
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
+      border: 2px solid transparent;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(94, 179, 205, 0.3);
+      animation: contactGradientShift 2s ease-in-out infinite;
     }
 
-    .close-contacts {
-      position: absolute;
-      top: 15px;
-      right: 20px;
-      background: none;
-      border: none;
-      font-size: 24px;
-      color: #999;
-      cursor: pointer;
+    @keyframes contactGradientShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
     }
 
-    .overlay-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0, 0, 0, 0.5);
-      z-index: 999;
-      display: none;
+    .contact-icon {
+      width: 18px;
+      height: 18px;
+      flex-shrink: 0;
     }
 
-    .overlay-bg.show {
-      display: block;
+    /* About section */
+    .about-section {
+      background: white;
+      padding: 60px 0;
+      border-bottom: 1px solid #f0f0f0;
+    }
+
+    .about-text {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+      font-size: 1.2rem;
+      line-height: 1.8;
+      color: #6c757d;
+      font-weight: 400;
     }
 
     /* Content area */
@@ -214,6 +213,7 @@
     }
 
     .main-nav a {
+      font-family: 'Inter', sans-serif;
       text-decoration: none;
       color: #7f8c8d;
       font-weight: 500;
@@ -242,15 +242,6 @@
 
     .main-nav a:hover {
       color: #5eb3cd;
-    }
-
-    .intro-text {
-      text-align: center;
-      max-width: 800px;
-      margin: 0 auto 80px auto;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      color: #6c757d;
     }
 
    .video-grid {
@@ -283,18 +274,15 @@
       overflow: hidden;
       background: linear-gradient(135deg, #e8f4f8 0%, #d1ecf1 100%);
       border-radius: 12px 12px 0 0;
-      /* Empêche la sélection de l'image sur mobile */
       -webkit-user-select: none;
       -moz-user-select: none;
       -ms-user-select: none;
       user-select: none;
-      /* Empêche le menu contextuel sur les images mobiles */
       -webkit-touch-callout: none;
       -webkit-tap-highlight-color: transparent;
     }
 
     .preview img {
-      /* Empêche spécifiquement le menu contextuel des images */
       -webkit-touch-callout: none;
       -webkit-user-select: none;
       -moz-user-select: none;
@@ -322,17 +310,16 @@
       opacity: 0;
       transition: opacity 0.3s ease;
       text-align: left;
-      padding: 20px;
+      padding: 15px;
       border-radius: 10px;
-      margin: 10px;
+      margin: 8px;
       box-sizing: border-box;
-      padding-bottom: 50px;
+      padding-bottom: 30px;
       pointer-events: none;
       overflow-y: auto;
       overflow-x: hidden;
     }
 
-    /* Custom scrollbar for webkit browsers */
     .overlay::-webkit-scrollbar {
       width: 4px;
     }
@@ -351,7 +338,6 @@
       background: rgba(94, 179, 205, 0.7);
     }
 
-    /* Firefox scrollbar styling */
     .overlay {
       scrollbar-width: thin;
       scrollbar-color: rgba(94, 179, 205, 0.4) transparent;
@@ -362,16 +348,19 @@
       opacity: 1;
     }
 
-    overlay-text {
-    margin-top: 10px;
-    margin-bottom: 15px;
-    color: #1a3b5d;
-    line-height: 1.4;
-    font-size: 12pt;
-    text-align: left;
-    padding-left: 0; 
-    text-indent: 0; 
-}
+    .overlay-text {
+      margin-top: 5px;
+      margin-bottom: 10px;
+      color: #1a3b5d;
+      line-height: 1.0;
+      font-size: 12pt;
+      text-align: left;
+      padding-left: 0; 
+      text-indent: 0;
+      display: block;
+      width: 100%;
+      white-space: pre-line;
+    }
 
     .video-description {
       padding: 25px;
@@ -385,14 +374,13 @@
       justify-content: center;
       gap: 10px;
       position: relative;
-      pointer-events: none; /* Отключаем клик по описанию */
+      pointer-events: none;
     }
 
     .video-description-text {
       flex: 1;
     }
 
-    /* Кнопка воспроизведения - по центру линии между превью и описанием */
     .play-button {
       width: 50px;
       height: 50px;
@@ -406,12 +394,12 @@
       transition: all 0.3s ease;
       box-shadow: 0 4px 15px rgba(94, 179, 205, 0.4);
       position: absolute;
-      top: -25px; /* Половина высоты кнопки для центрирования на линии */
+      top: -25px;
       left: 50%;
       transform: translateX(-50%);
       z-index: 10;
-      border: 3px solid white; /* Белая рамка для лучшей видимости */
-      pointer-events: auto; /* Разрешаем клик только по кнопке */
+      border: 3px solid white;
+      pointer-events: auto;
     }
 
     .play-button:hover {
@@ -482,17 +470,25 @@
       }
 
       .site-title {
-        font-size: 1.8rem;
+        font-size: 2rem;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      .about-section {
+        padding: 40px 0;
+      }
+
+      .about-text {
+        font-size: 1.1rem;
       }
 
       .main-nav ul {
         gap: 30px;
         flex-wrap: wrap;
-      }
-
-      .intro-text {
-        font-size: 1.1rem;
-        margin-bottom: 60px;
       }
 
       .video-grid {
@@ -504,25 +500,18 @@
         padding: 40px 0;
       }
 
-      .contacts {
-        padding: 30px;
-        margin: 20px;
-        width: calc(100% - 40px);
-        left: 20px;
-        right: 20px;
-        transform: translateY(-50%);
-      }
-
-      .overlay-text {
-        font-size: 11pt;
-        padding-left: 18px;
-        text-indent: -18px;
+      @media (max-width: 768px) {
+        .overlay-text {
+          font-size: 11pt;
+          padding-left: 0;
+          text-indent: 0;
+        }
       }
     }
 
     @media (max-width: 480px) {
       .site-title {
-        font-size: 1.6rem;
+        font-size: 1.8rem;
       }
 
       .main-nav ul {
@@ -540,6 +529,13 @@
       .overlay-text {
         font-size: 9pt;
         line-height: 1.3;
+        padding-left: 0;
+        text-indent: 0;
+      }
+
+      .contact-link {
+        padding: 10px 16px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -556,18 +552,30 @@
           <p class="site-subtitle">monteuse vidéo</p>
         </div>
       </div>
-      <a href="#" class="contact-button" id="contact-btn">Me Contacter</a>
+      <div class="contact-links">
+        <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+          </svg>
+          Email
+        </a>
+        <a href="https://t.me/taygeta505" target="_blank" rel="noopener" class="contact-link">
+          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+          </svg>
+          Telegram
+        </a>
+      </div>
     </div>
   </header>
 
-  <!-- Contact Modal -->
-  <div class="overlay-bg" id="overlay"></div>
-  <address class="contacts" id="contacts-modal">
-    <button class="close-contacts" id="close-btn">&times;</button>
-    <h3>Contactez-moi</h3>
-    <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">n.kashnitskaya@gmail.com</a>
-    <a href="https://t.me/taygeta505" target="_blank" rel="noopener" class="contact-link">@taygeta505</a>
-  </address>
+  <section class="about-section">
+    <div class="container">
+      <div class="about-text">
+        Je m'engage dans chaque projet avec sérieux, en respectant vos délais et votre vision pour obtenir un résultat qui dépasse vos attentes.
+      </div>
+    </div>
+  </section>
 
   <main class="content container">
     <nav class="main-nav">
@@ -580,15 +588,8 @@
 
     <section id="videos-section" class="video-gallery" aria-labelledby="videos-heading">
       <h2 id="videos-heading" class="visually-hidden">Vidéos</h2>
-      
-      <div class="intro-text">
-        Je m'engage dans chaque projet avec sérieux, en respectant vos délais et votre vision pour obtenir un résultat qui dépasse vos attentes.
-      </div>
 
       <div class="video-grid">
-
-<!-- <НАЧАЛО БЛОКА "визитная карточка видео"> -->
-        
         <div class="video-card" data-video-url="https://youtu.be/0RLDs0jtfZ4?si=NzXCTG5DR3SvBRNS">
           <div class="preview" style="position: relative;">
             <img src="images/TBEC.png" alt="vidéo corporate/entreprise" style="width:100%; height:100%; object-fit:cover; display:block;">
@@ -612,9 +613,6 @@
             <button class="play-button" aria-label="Lancer la vidéo"></button>
           </div>
         </div>
-        
-<!-- <КОНЕЦ БЛОКА "визитная карточка видео"> -->
-
       </div>
     </section>
 
@@ -638,39 +636,6 @@
   <script>
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Contact modal functionality
-    const contactBtn = document.getElementById('contact-btn');
-    const contactsModal = document.getElementById('contacts-modal');
-    const overlay = document.getElementById('overlay');
-    const closeBtn = document.getElementById('close-btn');
-
-    function showModal() {
-      contactsModal.classList.add('show');
-      overlay.classList.add('show');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function hideModal() {
-      contactsModal.classList.remove('show');
-      overlay.classList.remove('show');
-      document.body.style.overflow = '';
-    }
-
-    contactBtn.addEventListener('click', (e) => {
-      e.preventDefault();
-      showModal();
-    });
-
-    closeBtn.addEventListener('click', hideModal);
-    overlay.addEventListener('click', hideModal);
-
-    // Close modal on escape key
-    document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') {
-        hideModal();
-      }
-    });
 
     // Navigation functionality
     const navLinks = document.querySelectorAll('.main-nav a');
