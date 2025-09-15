@@ -128,8 +128,9 @@
 
     .contact-links {
       display: flex;
-      gap: 20px;
-      align-items: center;
+      flex-direction: column;
+      gap: 15px;
+      align-items: stretch;
     }
 
     .contact-link {
@@ -145,20 +146,56 @@
       font-weight: 500;
       transition: all 0.3s ease;
       font-size: 0.95rem;
-      border: 2px solid #5eb3cd;
+      border: none;
       box-shadow: 0 2px 10px rgba(94, 179, 205, 0.1);
-      min-width: 120px;
+      width: 140px;
       min-height: 44px;
+      position: relative;
+      overflow: hidden;
     }
 
     .contact-link:hover {
       color: white;
-      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
-      background-size: 300% 300%;
-      border: 2px solid transparent;
+      background: white;
       transform: translateY(-1px);
       box-shadow: 0 4px 20px rgba(94, 179, 205, 0.3);
+    }
+
+    .contact-link::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
+      border-radius: 25px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
       animation: contactGradientShift 2s ease-in-out infinite;
+    }
+
+    .contact-link::after {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 2px;
+      right: 2px;
+      bottom: 2px;
+      background: white;
+      border-radius: 23px;
+      z-index: -1;
+      transition: background 0.3s ease;
+    }
+
+    .contact-link:hover::before {
+      opacity: 1;
+    }
+
+    .contact-link:hover::after {
+      background: transparent;
     }
 
     @keyframes contactGradientShift {
