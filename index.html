@@ -58,11 +58,37 @@
     }
 
     .avatar {
-      width: 70px;
-      height: 70px;
+      width: 180px;
+      height: 180px;
       border-radius: 50%;
-      border: 3px solid #e8f4f8;
-      background: #5eb3cd;
+      background: linear-gradient(135deg, #3DA7B1, #C63D6A, #E9742B);
+      padding: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .avatar::before {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 6px;
+      right: 6px;
+      bottom: 6px;
+      background: white;
+      border-radius: 50%;
+      z-index: 1;
+    }
+
+    .avatar img {
+      position: relative;
+      z-index: 2;
+      width: calc(100% - 12px);
+      height: calc(100% - 12px);
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 6px;
+      border: 2px solid white;
     }
 
     .titles {
@@ -455,6 +481,11 @@
         gap: 15px;
       }
 
+      .avatar {
+        width: 140px;
+        height: 140px;
+      }
+
       .site-title {
         font-size: 1.8rem;
       }
@@ -522,7 +553,9 @@
   <header class="site-header">
     <div class="header-inner container">
       <div class="brand">
-         <img src="images/Наташа офис2.png" alt="Natalia Kashnitskaya" class="avatar">
+        <div class="avatar">
+          <img src="images/Наташа офис2.png" alt="Natalia Kashnitskaya">
+        </div>
         <div class="titles">
           <h1 class="site-title">Natalia Kashnitskaya</h1>
           <p class="site-subtitle">Monteuse Vidéo</p>
