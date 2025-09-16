@@ -66,6 +66,7 @@
       background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
       background-size: 300% 300%;
       padding: 6px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 8px rgba(61, 167, 177, 0.2);
       position: relative;
       overflow: visible;
       animation: gradientShift 4s ease-in-out infinite;
@@ -143,51 +144,51 @@
       align-items: stretch;
     }
 
-   .contact-link {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  background: white;
-  color: #5eb3cd;
-  text-decoration: none;
-  padding: 12px 20px;
-  border-radius: 25px;
-  font-weight: 500;
-  font-size: 0.95rem;
-  overflow: hidden;
-  z-index: 0;
-}
+    .contact-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: white;
+      color: #5eb3cd;
+      text-decoration: none;
+      padding: 12px 20px;
+      border-radius: 25px;
+      font-weight: 500;
+      transition: all 0.3s ease;
+      font-size: 0.95rem;
+      border: none;
+      box-shadow: 0 2px 10px rgba(94, 179, 205, 0.1), 0 0 0 2px rgba(61, 167, 177, 0.6);
+      width: 140px;
+      min-height: 44px;
+      position: relative;
+      overflow: hidden;
+    }
 
     .contact-link::before {
-  content: '';
-  position: absolute;
-  top: -3px;
-  left: -3px;
-  right: -3px;
-  bottom: -3px;
-  border-radius: 25px;
-  background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
-  z-index: -1;
-}
-
-.contact-link::after {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: white;
-  border-radius: 25px;
-  z-index: -1;
-}
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
+      border-radius: 25px;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      z-index: -1;
+      animation: contactGradientShift 2s ease-in-out infinite;
+    }
 
     .contact-link:hover {
-  color: white;
-  background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B);
-}
+      color: white;
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B);
+      background-size: 300% 300%;
+      animation: contactGradientShift 2s ease-in-out infinite;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 20px rgba(94, 179, 205, 0.3), 0 0 0 2px rgba(61, 167, 177, 0.6);
+    }
 
     .contact-link:hover::before {
       opacity: 1;
@@ -376,12 +377,17 @@
       font-size: 12pt;
       text-align: left;
       padding-left: 5px;
+      width: 100%;
     }
 
-    .overlay-item {
-      padding-left: 15px; /* Отступ для выравнивания текста */
-      text-indent: -15px; /* Висячий отступ равный padding-left */
-      margin-bottom: 2px; /* Небольшой отступ между пунктами */
+    .overlay-list {
+      list-style-type: "- ";
+      padding-left: 20px;
+      margin: 0;
+    }
+
+    .overlay-list li {
+      margin-bottom: 2px;
     }
 
     .video-description {
@@ -538,9 +544,8 @@
         font-size: 11pt;
       }
 
-      .overlay-item {
-        padding-left: 15px;
-        text-indent: -15px;
+      .overlay-list {
+        padding-left: 18px;
       }
     }
 
@@ -566,9 +571,8 @@
         line-height: 1.3;
       }
 
-      .overlay-item {
-        padding-left: 15px;
-        text-indent: -15px;
+      .overlay-list {
+        padding-left: 16px;
       }
 
       .contact-link {
@@ -632,16 +636,18 @@
             <img src="images/TBEC.png" alt="vidéo corporate/entreprise" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div class="overlay">
               <div class="overlay-text">
-                <div class="overlay-item">- conception et animation du générique</div>
-                <div class="overlay-item">- création d'infographies animées</div>
-                <div class="overlay-item">- amélioration de la qualité d'image/son</div>
-                <div class="overlay-item">- découpage et structuration des interviews</div>
-                <div class="overlay-item">- intégration de cartouches et titres</div>
-                <div class="overlay-item">- création et ajout manuel de sous-titres</div>
-                <div class="overlay-item">- synchronisation précise entre audio et vidéo</div>
-                <div class="overlay-item">- color grading et correction colorimétrique</div>
-                <div class="overlay-item">- optimisation pour différents formats de diffusion</div>
-                <div class="overlay-item">- tests de qualité sur plusieurs plateformes</div>
+                <ul class="overlay-list">
+                  <li>conception et animation du générique</li>
+                  <li>création d'infographies animées</li>
+                  <li>amélioration de la qualité d'image/son</li>
+                  <li>découpage et structuration des interviews</li>
+                  <li>intégration de cartouches et titres</li>
+                  <li>création et ajout manuel de sous-titres</li>
+                  <li>synchronisation précise entre audio et vidéo</li>
+                  <li>color grading et correction colorimétrique</li>
+                  <li>optimisation pour différents formats de diffusion</li>
+                  <li>tests de qualité sur plusieurs plateformes</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -656,17 +662,19 @@
             <img src="images/preview personnage.png" alt="Clip créatif — Le Personnage (3 en 1)" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div class="overlay">
               <div class="overlay-text">
-                <div class="overlay-item">- défi créatif : fusion de trois films différents en une narration cohérente</div>
-                <div class="overlay-item">- développement d'une concept originale pour le projet</div>
-                <div class="overlay-item">- sélection et découpage des extraits les plus significatifs</div>
-                <div class="overlay-item">- choix de la musique en harmonie avec le rythme et l'ambiance</div>
-                <div class="overlay-item">- application de techniques artistiques variées pour enrichir le récit</div>
-                <div class="overlay-item">- création d'une narration émotionnelle sans paroles afin de maximiser l'impact visuel</div>
-                <div class="overlay-item">- étude approfondie des thèmes et motifs communs</div>
-                <div class="overlay-item">- recherche de continuité narrative entre les œuvres</div>
-                <div class="overlay-item">- travail sur les transitions et les effets visuels</div>
-                <div class="overlay-item">- optimisation du timing pour maintenir l'attention</div>
-                <div class="overlay-item">- création d'un arc narratif complet et satisfaisant</div>
+                <ul class="overlay-list">
+                  <li>défi créatif : fusion de trois films différents en une narration cohérente</li>
+                  <li>développement d'une concept originale pour le projet</li>
+                  <li>sélection et découpage des extraits les plus significatifs</li>
+                  <li>choix de la musique en harmonie avec le rythme et l'ambiance</li>
+                  <li>application de techniques artistiques variées pour enrichir le récit</li>
+                  <li>création d'une narration émotionnelle sans paroles afin de maximiser l'impact visuel</li>
+                  <li>étude approfondie des thèmes et motifs communs</li>
+                  <li>recherche de continuité narrative entre les œuvres</li>
+                  <li>travail sur les transitions et les effets visuels</li>
+                  <li>optimisation du timing pour maintenir l'attention</li>
+                  <li>création d'un arc narratif complet et satisfaisant</li>
+                </ul>
               </div>
             </div>
           </div>
@@ -681,17 +689,19 @@
             <img src="images/preview war.png" alt="сlip documentaire «La Route de la Haine»" style="width:100%; height:100%; object-fit:cover; display:block;">
             <div class="overlay">
               <div class="overlay-text">
-                <div class="overlay-item">- montage d'un clip à partir d'archives historiques</div>
-                <div class="overlay-item">- création d'une narration émotionnelle sans paroles</div>
-                <div class="overlay-item">- sélection et découpage de chroniques de guerre</div>
-                <div class="overlay-item">- intégration d'extraits de films documentaires</div>
-                <div class="overlay-item">- recherche et choix de la musique</div>
-                <div class="overlay-item">- synchronisation précise entre la bande sonore et le rythme visuel</div>
-                <div class="overlay-item">- travail sur l'authenticité historique des séquences</div>
-                <div class="overlay-item">- création d'une progression dramatique cohérente</div>
-                <div class="overlay-item">- utilisation de techniques de montage pour renforcer l'émotion</div>
-                <div class="overlay-item">- respect de la sensibilité du sujet traité</div>
-                <div class="overlay-item">- optimisation de l'impact visuel et émotionnel</div>
+                <ul class="overlay-list">
+                  <li>montage d'un clip à partir d'archives historiques</li>
+                  <li>création d'une narration émotionnelle sans paroles</li>
+                  <li>sélection et découpage de chroniques de guerre</li>
+                  <li>intégration d'extraits de films documentaires</li>
+                  <li>recherche et choix de la musique</li>
+                  <li>synchronisation précise entre la bande sonore et le rythme visuel</li>
+                  <li>travail sur l'authenticité historique des séquences</li>
+                  <li>création d'une progression dramatique cohérente</li>
+                  <li>utilisation de techniques de montage pour renforcer l'émotion</li>
+                  <li>respect de la sensibilité du sujet traité</li>
+                  <li>optimisation de l'impact visuel et émotionnel</li>
+                </ul>
               </div>
             </div>
           </div>
