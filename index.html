@@ -44,7 +44,62 @@
     .site-header {
       background: white;
       padding: 40px 0;
+    }
+    
+    /* Секция компетенций */
+    .skills-section {
+      background: white;
+      border-top: 1px solid #f0f0f0;
       border-bottom: 1px solid #f0f0f0;
+      padding: 25px 0;
+    }
+    
+    .skills-list {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 20px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .skill-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 1rem;
+      font-weight: 500;
+      color: #4a4a4a;
+      transition: color 0.3s ease;
+      flex: 1;
+      justify-content: center;
+    }
+    
+    .skill-item:hover {
+      color: #5eb3cd;
+    }
+    
+    .skill-check {
+      width: 18px;
+      height: 18px;
+      border-radius: 50%;
+      background: #5eb3cd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+    
+    .skill-check::after {
+      content: '✓';
+      color: white;
+      font-size: 12px;
+      font-weight: bold;
     }
 
     .header-inner {
@@ -59,6 +114,32 @@
       gap: 20px;
     }
 
+    /* Разные длительности анимаций для рассинхронизации */
+    @keyframes gradientShift1 {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes gradientShift2 {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes gradientShift3 {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes gradientShift4 {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+    
+    @keyframes gradientShift5 {
+      0%, 100% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+    }
+
     .avatar {
       width: 180px;
       height: 180px;
@@ -69,7 +150,8 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       position: relative;
       overflow: visible;
-      animation: gradientShift 4s ease-in-out infinite;
+      /* Уникальная анимация для аватара */
+      animation: gradientShift1 5.3s ease-in-out infinite;
     }
 
     .avatar::before {
@@ -83,7 +165,8 @@
       background-size: 300% 300%;
       border-radius: 50%;
       z-index: -2;
-      animation: gradientShift 6s ease-in-out infinite reverse;
+      /* Обратная анимация с другой длительностью */
+      animation: gradientShift2 7.1s ease-in-out infinite reverse;
     }
 
     .avatar::after {
@@ -96,15 +179,6 @@
       background: white;
       border-radius: 50%;
       z-index: -1;
-    }
-
-    @keyframes gradientShift {
-      0%, 100% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
     }
 
     .avatar .inner-white {
@@ -189,7 +263,15 @@
       width: 140px;
       min-height: 44px;
       position: relative;
-      animation: gradientShift 4s ease-in-out infinite;
+    }
+
+    /* Разные анимации для разных кнопок контактов */
+    .contact-link:nth-child(1) {
+      animation: gradientShift3 4.7s ease-in-out infinite;
+    }
+    
+    .contact-link:nth-child(2) {
+      animation: gradientShift4 6.2s ease-in-out infinite;
     }
 
     .contact-link::before {
@@ -207,16 +289,6 @@
       color: white;
       transform: translateY(-1px);
       box-shadow: 0 4px 20px rgba(94, 179, 205, 0.3);
-      animation: gradientShift 4s ease-in-out infinite;
-    }
-
-    @keyframes contactGradientShift {
-      0%, 100% {
-        background-position: 0% 50%;
-      }
-      50% {
-        background-position: 100% 50%;
-      }
     }
 
     .contact-icon {
@@ -253,7 +325,7 @@
       font-family: 'Inter', sans-serif;
       text-decoration: none;
       color: #7f8c8d;
-      font-weight: 500;
+      font-weight: 700;
       font-size: 1.1rem;
       text-transform: uppercase;
       letter-spacing: 1px;
@@ -276,7 +348,8 @@
       background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
       background-size: 300% 300%;
       border-radius: 2px;
-      animation: gradientShift 4s ease-in-out infinite;
+      /* Уникальная анимация для активной ссылки навигации */
+      animation: gradientShift5 3.8s ease-in-out infinite;
     }
 
     .main-nav a:hover {
@@ -536,8 +609,17 @@
         gap: 15px;
       }
 
-      .about-section {
-        padding: 40px 0;
+      .skills-list {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .skill-item {
+        font-size: 0.85rem;
+        flex: none;
+        justify-content: center;
       }
 
       .about-text {
@@ -632,6 +714,33 @@
       </div>
     </div>
   </header>
+
+  <div class="skills-section">
+    <div class="container">
+      <ul class="skills-list">
+        <li class="skill-item">
+          <span class="skill-check"></span>
+          Sony Vegas
+        </li>
+        <li class="skill-item">
+          <span class="skill-check"></span>
+          CapCut
+        </li>
+        <li class="skill-item">
+          <span class="skill-check"></span>
+          Adobe Photoshop
+        </li>
+        <li class="skill-item">
+          <span class="skill-check"></span>
+          Canva
+        </li>
+        <li class="skill-item">
+          <span class="skill-check"></span>
+          AI
+        </li>
+      </ul>
+    </div>
+  </div>
 
   <section class="about-section">
     <!-- Section now empty as content moved to hero -->
