@@ -7,7 +7,7 @@
   <meta name="description" content="Portfolio de Natalia Kashnitskaya — monteuse vidéo." />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&family=Open+Sans:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
   <style>
     * {
       margin: 0;
@@ -134,9 +134,9 @@
     }
 
     .site-title {
-      font-family: 'Playfair Display', serif;
+      font-family: 'Montserrat', sans-serif;
       font-size: 2.2rem;
-      font-weight: 600;
+      font-weight: 800;
       margin-bottom: 8px;
       color: #2c3e50;
       letter-spacing: -0.5px;
@@ -153,7 +153,7 @@
     }
 
     .about-text-hero {
-      font-family: 'Inter', sans-serif;
+      font-family: 'Open Sans', sans-serif;
       font-size: 1rem;
       line-height: 1.6;
       color: #6c757d;
@@ -174,7 +174,9 @@
       align-items: center;
       justify-content: center;
       gap: 8px;
-      background: white;
+      background: linear-gradient(white, white) padding-box,
+                  linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1) border-box;
+      background-size: auto, 300% 300%;
       color: #5eb3cd;
       text-decoration: none;
       padding: 12px 20px;
@@ -182,51 +184,30 @@
       font-weight: 500;
       transition: all 0.3s ease;
       font-size: 0.95rem;
-      border: none;
+      border: 2px solid transparent;
       box-shadow: 0 2px 10px rgba(94, 179, 205, 0.1);
       width: 140px;
       min-height: 44px;
       position: relative;
-      overflow: hidden;
+      animation: gradientShift 4s ease-in-out infinite;
     }
 
     .contact-link::before {
-      content: '';
-      position: absolute;
-      top: -2px;
-      left: -2px;
-      right: -2px;
-      bottom: -2px;
-      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
-      background-size: 300% 300%;
-      border-radius: 27px;
-      z-index: -1;
-      animation: contactGradientShift 3s ease-in-out infinite;
+      display: none;
     }
 
     .contact-link::after {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      background: white;
-      border-radius: 25px;
-      z-index: -1;
-      transition: background 0.3s ease;
+      display: none;
     }
 
     .contact-link:hover {
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1) padding-box,
+                  linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1) border-box;
+      background-size: 300% 300%, 300% 300%;
       color: white;
       transform: translateY(-1px);
       box-shadow: 0 4px 20px rgba(94, 179, 205, 0.3);
-    }
-
-    .contact-link:hover::after {
-      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
-      background-size: 300% 300%;
-      animation: contactGradientShift 3s ease-in-out infinite;
+      animation: gradientShift 4s ease-in-out infinite;
     }
 
     @keyframes contactGradientShift {
@@ -292,8 +273,10 @@
       left: 0;
       right: 0;
       height: 3px;
-      background: #5eb3cd;
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
       border-radius: 2px;
+      animation: gradientShift 4s ease-in-out infinite;
     }
 
     .main-nav a:hover {
