@@ -13,6 +13,22 @@
       margin: 0;
       padding: 0;
       box-sizing: border-box;
+      /* Suppression de la sélection bleue au survol */
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    /* Permettre la sélection pour le contenu textuel nécessaire */
+    .about-text-hero,
+    .overlay-text,
+    .video-description-text,
+    .page-placeholder {
+      -webkit-user-select: text;
+      -moz-user-select: text;
+      -ms-user-select: text;
+      user-select: text;
     }
 
     body {
@@ -45,67 +61,12 @@
       background: white;
       padding: 40px 0;
     }
-    
-    /* Секция компетенций */
-    .skills-section {
-      background: white;
-      border-top: 1px solid #f0f0f0;
-      border-bottom: 1px solid #f0f0f0;
-      padding: 25px 0;
-    }
-    
-    .skills-list {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      flex-wrap: wrap;
-      gap: 20px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      max-width: 800px;
-      margin: 0 auto;
-    }
-    
-    .skill-item {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-family: 'Inter', sans-serif;
-      font-size: 1rem;
-      font-weight: 500;
-      color: #4a4a4a;
-      transition: color 0.3s ease;
-      flex: 1;
-      justify-content: center;
-    }
-    
-    .skill-item:hover {
-      color: #5eb3cd;
-    }
-    
-    .skill-check {
-      width: 18px;
-      height: 18px;
-      border-radius: 50%;
-      background: #5eb3cd;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      flex-shrink: 0;
-    }
-    
-    .skill-check::after {
-      content: '✓';
-      color: white;
-      font-size: 12px;
-      font-weight: bold;
-    }
 
     .header-inner {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      gap: 80px; /* Увеличенный зазор между основным контентом и правой частью */
     }
 
     .brand {
@@ -114,7 +75,66 @@
       gap: 20px;
     }
 
-    /* Разные длительности анимаций для рассинхронизации */
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 60px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: stretch;
+    }
+
+    .skills-vertical {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .skill-item-vertical {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: 'Inter', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #4a4a4a;
+      transition: color 0.3s ease;
+      white-space: nowrap; /* Empêche le retour à la ligne */
+    }
+
+    .skill-item-vertical:hover {
+      color: #5eb3cd;
+    }
+
+    .skill-check-vertical {
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: #5eb3cd;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .skill-check-vertical::after {
+      content: '✓';
+      color: white;
+      font-size: 10px;
+      font-weight: bold;
+    }
+    
+    /* Section compétences horizontale - cachée sur desktop */
+    .skills-section {
+      display: none;
+    }
+
+    /* Différentes durées d'animations pour la désynchronisation */
     @keyframes gradientShift1 {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -150,7 +170,8 @@
       box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
       position: relative;
       overflow: visible;
-      /* Уникальная анимация для аватара */
+      flex-shrink: 0; /* Empêche la compression */
+      /* Animation unique pour l'avatar */
       animation: gradientShift1 5.3s ease-in-out infinite;
     }
 
@@ -165,7 +186,7 @@
       background-size: 300% 300%;
       border-radius: 50%;
       z-index: -2;
-      /* Обратная анимация с другой длительностью */
+      /* Animation inverse avec durée différente */
       animation: gradientShift2 7.1s ease-in-out infinite reverse;
     }
 
@@ -236,13 +257,6 @@
       text-align: left;
     }
 
-    .contact-links {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      align-items: stretch;
-    }
-
     .contact-link {
       display: flex;
       align-items: center;
@@ -265,7 +279,7 @@
       position: relative;
     }
 
-    /* Разные анимации для разных кнопок контактов */
+    /* Animations différentes pour les boutons de contact */
     .contact-link:nth-child(1) {
       animation: gradientShift3 4.7s ease-in-out infinite;
     }
@@ -297,12 +311,12 @@
       flex-shrink: 0;
     }
 
-    /* About section - now hidden on desktop as content moved to hero */
+    /* Section À propos - maintenant cachée sur desktop car le contenu a été déplacé vers le hero */
     .about-section {
       display: none;
     }
 
-    /* Content area */
+    /* Zone de contenu */
     .content {
       padding: 60px 0;
       min-height: 50vh;
@@ -348,7 +362,7 @@
       background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
       background-size: 300% 300%;
       border-radius: 2px;
-      /* Уникальная анимация для активной ссылки навигации */
+      /* Animation unique pour le lien de navigation actif */
       animation: gradientShift5 3.8s ease-in-out infinite;
     }
 
@@ -537,7 +551,7 @@
       margin-left: 3px;
     }
 
-    /* Page content for placeholder pages */
+    /* Contenu de page pour les pages de substitution */
     .page-placeholder {
       text-align: center;
       padding: 100px 20px;
@@ -556,7 +570,7 @@
       opacity: 0.7;
     }
 
-    /* Footer */
+    /* Pied de page */
     .site-footer {
       background: white;
       border-top: 1px solid #f0f0f0;
@@ -584,6 +598,76 @@
         text-align: center;
       }
 
+      .header-right {
+        flex-direction: column;
+        gap: 20px;
+        align-items: center;
+      }
+
+      .skills-vertical {
+        display: none;
+      }
+
+      .skills-section {
+        display: block;
+        background: white;
+        border-top: 1px solid #f0f0f0;
+        border-bottom: 1px solid #f0f0f0;
+        padding: 25px 0;
+      }
+
+      .skills-list {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        flex-wrap: wrap;
+        gap: 15px;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        max-width: 800px;
+        margin: 0 auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+      }
+
+      .skill-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-family: 'Inter', sans-serif;
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: #4a4a4a;
+        transition: color 0.3s ease;
+        flex: none;
+        justify-content: center;
+        white-space: nowrap; /* Empêche le retour à la ligne sur mobile aussi */
+      }
+
+      .skill-item:hover {
+        color: #5eb3cd;
+      }
+
+      .skill-check {
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        background: #5eb3cd;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+      }
+
+      .skill-check::after {
+        content: '✓';
+        color: white;
+        font-size: 12px;
+        font-weight: bold;
+      }
+
       .about-text-hero {
         text-align: center;
         max-width: 100%;
@@ -607,19 +691,6 @@
       .contact-links {
         flex-direction: column;
         gap: 15px;
-      }
-
-      .skills-list {
-        gap: 15px;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .skill-item {
-        font-size: 0.85rem;
-        flex: none;
-        justify-content: center;
       }
 
       .about-text {
@@ -698,19 +769,43 @@
           </div>
         </div>
       </div>
-      <div class="contact-links">
-        <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
-          </svg>
-          Email
-        </a>
-        <a href="https://t.me/taygeta505" target="_blank" rel="noopener" class="contact-link">
-          <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
-          </svg>
-          Telegram
-        </a>
+      <div class="header-right">
+        <div class="contact-links">
+          <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+            </svg>
+            Email
+          </a>
+          <a href="https://t.me/taygeta505" target="_blank" rel="noopener" class="contact-link">
+            <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+            </svg>
+            Telegram
+          </a>
+        </div>
+        <div class="skills-vertical">
+          <div class="skill-item-vertical">
+            <span class="skill-check-vertical"></span>
+            Sony Vegas
+          </div>
+          <div class="skill-item-vertical">
+            <span class="skill-check-vertical"></span>
+            CapCut
+          </div>
+          <div class="skill-item-vertical">
+            <span class="skill-check-vertical"></span>
+            Adobe Photoshop
+          </div>
+          <div class="skill-item-vertical">
+            <span class="skill-check-vertical"></span>
+            Canva
+          </div>
+          <div class="skill-item-vertical">
+            <span class="skill-check-vertical"></span>
+            AI
+          </div>
+        </div>
       </div>
     </div>
   </header>
@@ -743,7 +838,7 @@
   </div>
 
   <section class="about-section">
-    <!-- Section now empty as content moved to hero -->
+    <!-- Section maintenant vide car le contenu a été déplacé vers le hero -->
   </section>
 
   <main class="content container">
