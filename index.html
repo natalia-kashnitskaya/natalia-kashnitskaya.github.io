@@ -64,11 +64,13 @@
 
     .header-inner {
       display: grid;
-      grid-template-columns: 2fr 1fr 2fr;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
       align-items: flex-start;
-      gap: 40px;
+      gap: 30px;
       width: 100%;
       padding: 0 40px;
+      max-width: 1400px;
+      margin: 0 auto;
     }
 
     .left-section {
@@ -81,16 +83,24 @@
     }
 
     .center-section {
-      justify-self: start;
-      margin-left: -30px;
+      justify-self: center;
+      display: flex;
+      justify-content: center;
     }
 
-    .right-section {
+    .contact-section {
+      justify-self: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 25px;
+    }
+
+    .skills-section-desktop {
       justify-self: end;
       display: flex;
       flex-direction: column;
       align-items: flex-end;
-      gap: 30px;
       padding-right: 20px;
     }
 
@@ -616,13 +626,24 @@
     /* Responsive pour écrans moyens */
     @media (max-width: 1200px) {
       .header-inner {
-        grid-template-columns: minmax(200px, 250px) auto minmax(140px, 180px) auto minmax(180px, 220px);
-        gap: 25px;
+        grid-template-columns: 2fr auto auto 1.5fr;
+        gap: 20px;
+        max-width: 1200px;
       }
       
       .about-text-hero {
-        max-width: 250px;
+        max-width: 280px;
         font-size: 0.95rem;
+      }
+      
+      .contact-links {
+        gap: 12px;
+      }
+      
+      .contact-link {
+        width: 130px;
+        padding: 10px 16px;
+        font-size: 0.9rem;
       }
     }
 
@@ -633,6 +654,7 @@
         flex-direction: column;
         gap: 30px;
         text-align: center;
+        max-width: 100%;
       }
 
       .about-text-section,
@@ -641,7 +663,7 @@
         order: 2;
       }
 
-      .avatar-section {
+      .center-section {
         order: 1;
       }
 
@@ -653,6 +675,10 @@
 
       .skills-vertical {
         display: none;
+      }
+
+      .skills-section-desktop {
+        display: none !important;
       }
 
       .skills-section {
@@ -822,39 +848,16 @@
         </div>
       </div>
       
-      <div class="avatar-section">
+      <div class="center-section">
         <div class="brand">
           <div class="avatar">
             <div class="inner-white"></div>
             <img src="images/natasha site pic.png" alt="Natalia Kashnitskaya">
           </div>
-
         </div>
       </div>
       
       <div class="contact-section">
-        <div class="skills-vertical">
-          <div class="skill-item-vertical">
-            <span class="skill-check-vertical"></span>
-            Sony Vegas
-          </div>
-          <div class="skill-item-vertical">
-            <span class="skill-check-vertical"></span>
-            CapCut
-          </div>
-          <div class="skill-item-vertical">
-            <span class="skill-check-vertical"></span>
-            Adobe Photoshop
-          </div>
-          <div class="skill-item-vertical">
-            <span class="skill-check-vertical"></span>
-            Canva
-          </div>
-          <div class="skill-item-vertical">
-            <span class="skill-check-vertical"></span>
-            AI
-          </div>
-        </div>
         <div class="contact-links">
           <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">
             <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
@@ -871,7 +874,7 @@
         </div>
       </div>
       
-      <div class="skills-section-desktop" style="display: none;">
+      <div class="skills-section-desktop">
         <div class="skills-vertical">
           <div class="skill-item-vertical">
             <span class="skill-check-vertical"></span>
