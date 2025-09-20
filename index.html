@@ -267,6 +267,11 @@
       color: #4a4a4a;
     }
 
+    /* Скрыть les titres dans le brand sur desktop */
+    .brand .titles {
+      display: none;
+    }
+
     .site-title {
       font-family: 'Montserrat', sans-serif;
       font-size: 1.8rem;
@@ -655,22 +660,39 @@
         gap: 30px;
         text-align: center;
         max-width: 100%;
+        align-items: center;
       }
 
       .about-text-section,
       .contact-section,
       .skills-section-desktop {
         order: 2;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
       }
 
       .center-section {
         order: 1;
+        width: 100%;
+        display: flex;
+        justify-content: center;
       }
 
       .brand {
         flex-direction: column;
         gap: 15px;
         text-align: center;
+        align-items: center;
+        width: 100%;
+      }
+
+      .contact-links {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+        width: 100%;
       }
 
       .skills-vertical {
@@ -746,11 +768,8 @@
         max-width: 100%;
         order: 3;
         margin-top: 20px;
-      }
-
-      .contact-links {
-        flex-direction: column;
-        gap: 15px;
+        width: 100%;
+        padding: 0 20px;
       }
 
       .avatar {
@@ -795,10 +814,15 @@
       
       .brand .titles {
         display: block;
+        text-align: center;
       }
       
       .brand .titles .site-title {
         font-size: 2rem;
+      }
+      
+      .brand .titles .site-subtitle {
+        font-size: 1.1rem;
       }
     }
 
@@ -853,6 +877,10 @@
           <div class="avatar">
             <div class="inner-white"></div>
             <img src="images/natasha site pic.png" alt="Natalia Kashnitskaya">
+          </div>
+          <div class="titles">
+            <h1 class="site-title">Natalia Kashnitskaya</h1>
+            <p class="site-subtitle">monteuse vidéo</p>
           </div>
         </div>
       </div>
