@@ -285,6 +285,20 @@
       margin-bottom: 8px;
       color: #2c3e50;
       letter-spacing: -0.5px;
+      position: relative;
+    }
+
+    .site-title::after {
+      content: '';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      right: 0;
+      height: 1.5px;
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
+      border-radius: 1px;
+      animation: gradientShift5 3.8s ease-in-out infinite;
     }
 
     .site-subtitle {
@@ -624,14 +638,54 @@
     .site-footer {
       background: white;
       border-top: 1px solid #f0f0f0;
-      text-align: center;
       padding: 40px 20px;
       margin-top: 80px;
+      position: relative;
     }
 
-    .site-footer small {
+    .footer-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .footer-left {
+      flex: 1;
+    }
+
+    .footer-left small {
       font-size: 0.9rem;
       color: #999;
+    }
+
+    .back-to-top {
+      background: linear-gradient(45deg, #3DA7B1, #5eb3cd, #C63D6A, #E9742B, #3DA7B1);
+      background-size: 300% 300%;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 4px 15px rgba(94, 179, 205, 0.3);
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      animation: gradientShift5 4.2s ease-in-out infinite;
+    }
+
+    .back-to-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(94, 179, 205, 0.4);
+    }
+
+    .back-to-top::before {
+      content: '↑';
+      font-weight: bold;
     }
 
     /* Responsive pour écrans moyens */
@@ -831,6 +885,20 @@
       .brand .titles .site-subtitle {
         font-size: 1.1rem;
       }
+
+      .footer-content {
+        flex-direction: column;
+        gap: 20px;
+        text-align: center;
+      }
+
+      .footer-left {
+        order: 1;
+      }
+
+      .back-to-top {
+        order: 2;
+      }
     }
 
     @media (max-width: 480px) {
@@ -900,11 +968,11 @@
             </svg>
             Email
           </a>
-          <a href="https://t.me/taygeta505" target="_blank" rel="noopener" class="contact-link">
+          <a href="contact.html" class="contact-link">
             <svg class="contact-icon" viewBox="0 0 24 24" fill="currentColor">
-              <path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/>
+              <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.89 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
             </svg>
-            Telegram
+            Contact
           </a>
         </div>
       </div>
@@ -1074,8 +1142,11 @@
   </main>
 
   <footer class="site-footer">
-    <div class="container">
-      <small>© <span id="year">2025</span> Natalia Kashnitskaya</small>
+    <div class="footer-content">
+      <div class="footer-left">
+        <small>© <span id="year">2025</span> Natalia Kashnitskaya</small>
+      </div>
+      <button class="back-to-top" onclick="scrollToTop()" aria-label="Retour en haut"></button>
     </div>
   </footer>
 
@@ -1149,6 +1220,14 @@
 
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
+
+    // Back to top functionality
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
   </script>
 </body>
 </html>
