@@ -690,25 +690,14 @@
     .back-to-top::before {
       content: '';
       position: absolute;
-      top: 48%;
-      left: 45%;
-      transform: translate(-50%, -50%) rotate(-45deg);
-      width: 10px;
-      height: 2px;
-      background: white;
-      border-radius: 1px;
-    }
-
-    .back-to-top::after {
-      content: '';
-      position: absolute;
-      top: 48%;
-      left: 55%;
-      transform: translate(-50%, -50%) rotate(45deg);
-      width: 10px;
-      height: 2px;
-      background: white;
-      border-radius: 1px;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 0;
+      height: 0;
+      border-left: 6px solid transparent;
+      border-right: 6px solid transparent;
+      border-bottom: 8px solid white;
     }
 
     /* Responsive pour écrans moyens */
