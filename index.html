@@ -675,6 +675,7 @@
       align-items: center;
       justify-content: center;
       animation: gradientShift5 4.2s ease-in-out infinite;
+      position: relative;
     }
 
     .back-to-top:hover {
@@ -683,9 +684,27 @@
     }
 
     .back-to-top::before {
-      content: '▲';
-      font-weight: 900;
-      font-size: 16px;
+      content: '';
+      position: absolute;
+      top: 45%;
+      left: 45%;
+      transform: translate(-50%, -50%) rotate(45deg);
+      width: 10px;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
+    }
+
+    .back-to-top::after {
+      content: '';
+      position: absolute;
+      top: 45%;
+      left: 55%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      width: 10px;
+      height: 2px;
+      background: white;
+      border-radius: 1px;
     }
 
     /* Responsive pour écrans moyens */
