@@ -177,7 +177,7 @@
       font-size: 10px;
       font-weight: bold;
     }
-    
+
     /* Section compétences horizontale - complètement cachée */
     .skills-section {
       display: none;
@@ -188,22 +188,22 @@
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-    
+
     @keyframes gradientShift2 {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-    
+
     @keyframes gradientShift3 {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-    
+
     @keyframes gradientShift4 {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
     }
-    
+
     @keyframes gradientShift5 {
       0%, 100% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
@@ -351,7 +351,7 @@
     .contact-link:nth-child(1) {
       animation: gradientShift3 4.7s ease-in-out infinite;
     }
-    
+
     .contact-link:nth-child(2) {
       animation: gradientShift4 6.2s ease-in-out infinite;
     }
@@ -707,16 +707,16 @@
         gap: 20px;
         max-width: 1200px;
       }
-      
+
       .about-text-hero {
         max-width: 280px;
         font-size: 0.95rem;
       }
-      
+
       .contact-links {
         gap: 12px;
       }
-      
+
       .contact-link {
         width: 130px;
         padding: 10px 16px;
@@ -828,16 +828,16 @@
       .titles-left {
         display: none;
       }
-      
+
       .brand .titles {
         display: block;
         text-align: center;
       }
-      
+
       .brand .titles .site-title {
         font-size: 2rem;
       }
-      
+
       .brand .titles .site-subtitle {
         font-size: 1.1rem;
       }
@@ -902,7 +902,7 @@
           Je m'engage dans chaque projet avec sérieux, en respectant vos délais et votre vision pour obtenir un résultat qui dépasse vos attentes.
         </div>
       </div>
-      
+
       <div class="center-section">
         <div class="brand">
           <div class="avatar">
@@ -915,7 +915,7 @@
           </div>
         </div>
       </div>
-      
+
       <div class="contact-section">
         <div class="contact-links">
           <a href="mailto:n.kashnitskaya@gmail.com" class="contact-link">
@@ -932,7 +932,7 @@
           </a>
         </div>
       </div>
-      
+
       <div class="skills-section-desktop">
         <div class="skills-vertical">
           <div class="skill-item-vertical">
@@ -990,9 +990,9 @@
   <main class="content container">
     <nav class="main-nav">
       <ul>
-        <li><a href="index.html" class="active">MONTAGE</a></li>
-        <li><a href="photo.html">PHOTO</a></li>
-        <li><a href="univers.html">MON UNIVERS</a></li>
+        <li><a href="#" data-page="videos" class="active">Montage</a></li>
+        <li><a href="photo.html" data-page="photos">Photo</a></li>
+        <li><a href="univers.html" data-page="univers">Mon Univers</a></li>
       </ul>
     </nav>
 
@@ -1106,57 +1106,48 @@
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Navigation functionality - CORRIGÉ
+    // Navigation functionality
     const navLinks = document.querySelectorAll('.main-nav a');
-    
+    const sections = {
+      'videos': document.getElementById('videos-section'),
+      'photos': document.getElementById('photos-section'),
+      'univers': document.getElementById('univers-section')
+    };
+
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        // Si le lien contient .html, laisser le comportement par défaut (navigation vers la page)
-        if (link.getAttribute('href').includes('.html')) {
-          // Comportement par défaut - navigation vers la page
-          return;
-        }
-        
-        // Sinon, empêcher le comportement par défaut et gérer en JavaScript
         e.preventDefault();
-        
+
         // Remove active class from all links
         navLinks.forEach(l => l.classList.remove('active'));
-        
+
         // Add active class to clicked link
         link.classList.add('active');
-        
-        // Get page name from href (without .html)
-        const pageName = link.getAttribute('href').replace('.html', '');
-        
+
         // Hide all sections
-        const sections = document.querySelectorAll('section');
-        sections.forEach(section => {
-          section.style.display = 'none';
+        Object.values(sections).forEach(section => {
+          if (section) section.style.display = 'none';
         });
-        
-        // Show appropriate section
-        if (pageName === 'index' || pageName === 'montage') {
-          document.getElementById('videos-section').style.display = 'block';
-        } else if (pageName === 'photo') {
-          document.getElementById('photos-section').style.display = 'block';
-        } else if (pageName === 'univers') {
-          document.getElementById('univers-section').style.display = 'block';
+
+        // Show selected section
+        const page = link.getAttribute('data-page');
+        if (sections[page]) {
+          sections[page].style.display = 'block';
         }
       });
     });
 
     // Video click functionality - ТОЛЬКО кнопка play открывает видео
     const playButtons = document.querySelectorAll('.play-button');
-    
+
     playButtons.forEach(button => {
       const videoCard = button.closest('.video-card');
       const videoUrl = videoCard.getAttribute('data-video-url');
-      
+
       button.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        
+
         if (videoUrl && videoUrl !== '#') {
           window.open(videoUrl, '_blank');
         } else {
