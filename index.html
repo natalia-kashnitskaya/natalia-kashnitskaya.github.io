@@ -1116,24 +1116,32 @@
 
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
-        e.preventDefault();
+        const href = link.getAttribute('href');
 
-        // Remove active class from all links
-        navLinks.forEach(l => l.classList.remove('active'));
+        // If the link is for in-page navigation (like a single-page app), handle it here.
+        // Otherwise, allow the browser to navigate to the new page.
+        if (href === '#') {
+          e.preventDefault(); // Prevent default only for in-page links
 
-        // Add active class to clicked link
-        link.classList.add('active');
+          // Remove active class from all links
+          navLinks.forEach(l => l.classList.remove('active'));
 
-        // Hide all sections
-        Object.values(sections).forEach(section => {
-          if (section) section.style.display = 'none';
-        });
+          // Add active class to clicked link
+          link.classList.add('active');
 
-        // Show selected section
-        const page = link.getAttribute('data-page');
-        if (sections[page]) {
-          sections[page].style.display = 'block';
+          // Hide all sections
+          Object.values(sections).forEach(section => {
+            if (section) section.style.display = 'none';
+          });
+
+          // Show selected section
+          const page = link.getAttribute('data-page');
+          if (sections[page]) {
+            sections[page].style.display = 'block';
+          }
         }
+        // For links with actual URLs like "photo.html", we do nothing and let
+        // the browser perform its default navigation action.
       });
     });
 
