@@ -990,9 +990,9 @@
   <main class="content container">
     <nav class="main-nav">
       <ul>
-        <li><a href="index.html">MONTAGE</a></li>
+        <li><a href="index.html" class="active">MONTAGE</a></li>
         <li><a href="photo.html">PHOTO</a></li>
-        <li><a href="univers.html">UNIVERS</a></li>
+        <li><a href="univers.html">MON UNIVERS</a></li>
       </ul>
     </nav>
 
@@ -1106,16 +1106,18 @@
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Navigation functionality
+    // Navigation functionality - CORRIGÉ
     const navLinks = document.querySelectorAll('.main-nav a');
-    const sections = {
-      'videos': document.getElementById('videos-section'),
-      'photos': document.getElementById('photos-section'),
-      'univers': document.getElementById('univers-section')
-    };
-
+    
     navLinks.forEach(link => {
       link.addEventListener('click', (e) => {
+        // Si le lien contient .html, laisser le comportement par défaut (navigation vers la page)
+        if (link.getAttribute('href').includes('.html')) {
+          // Comportement par défaut - navigation vers la page
+          return;
+        }
+        
+        // Sinon, empêcher le comportement par défaut et gérer en JavaScript
         e.preventDefault();
         
         // Remove active class from all links
@@ -1124,15 +1126,22 @@
         // Add active class to clicked link
         link.classList.add('active');
         
+        // Get page name from href (without .html)
+        const pageName = link.getAttribute('href').replace('.html', '');
+        
         // Hide all sections
-        Object.values(sections).forEach(section => {
-          if (section) section.style.display = 'none';
+        const sections = document.querySelectorAll('section');
+        sections.forEach(section => {
+          section.style.display = 'none';
         });
         
-        // Show selected section
-        const page = link.getAttribute('data-page');
-        if (sections[page]) {
-          sections[page].style.display = 'block';
+        // Show appropriate section
+        if (pageName === 'index' || pageName === 'montage') {
+          document.getElementById('videos-section').style.display = 'block';
+        } else if (pageName === 'photo') {
+          document.getElementById('photos-section').style.display = 'block';
+        } else if (pageName === 'univers') {
+          document.getElementById('univers-section').style.display = 'block';
         }
       });
     });
