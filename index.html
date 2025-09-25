@@ -1108,25 +1108,23 @@
 
     // Navigation functionality
     const navLinks = document.querySelectorAll('.main-nav a');
+    const allNavLinks = document.querySelectorAll('.main-nav a');
     const sections = {
       'videos': document.getElementById('videos-section'),
       'photos': document.getElementById('photos-section'),
       'univers': document.getElementById('univers-section')
     };
 
-    navLinks.forEach(link => {
-      link.addEventListener('click', (e) => {
-        const href = link.getAttribute('href');
-
-        // If the link is for in-page navigation (like a single-page app), handle it here.
-        // Otherwise, allow the browser to navigate to the new page.
-        if (href === '#') {
-          e.preventDefault(); // Prevent default only for in-page links
+    allNavLinks.forEach(link => {
+      // Only add the click listener for in-page navigation (href="#")
+      if (link.getAttribute('href') === '#') {
+        link.addEventListener('click', (e) => {
+          e.preventDefault(); // Prevent default browser action
 
           // Remove active class from all links
-          navLinks.forEach(l => l.classList.remove('active'));
+          allNavLinks.forEach(l => l.classList.remove('active'));
 
-          // Add active class to clicked link
+          // Add active class to the clicked link
           link.classList.add('active');
 
           // Hide all sections
@@ -1134,16 +1132,18 @@
             if (section) section.style.display = 'none';
           });
 
-          // Show selected section
+          // Show the target section
           const page = link.getAttribute('data-page');
           if (sections[page]) {
             sections[page].style.display = 'block';
           }
-        }
-        // For links with actual URLs like "photo.html", we do nothing and let
-        // the browser perform its default navigation action.
-      });
+        });
+      }
+      // No 'else' block is needed. Links without href="#" will perform
+      // their default action (navigating to a new page) because no
+      // event listener is attached to them here.
     });
+
 
     // Video click functionality - ТОЛЬКО кнопка play открывает видео
     const playButtons = document.querySelectorAll('.play-button');
