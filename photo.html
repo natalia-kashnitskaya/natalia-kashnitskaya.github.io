@@ -298,7 +298,7 @@
       font-family: 'Inter', sans-serif;
       font-size: 1.1rem;
       font-weight: 300;
-      color: #7f8c8d;
+      color: #5eb3cd;
       letter-spacing: 0.5px;
       text-transform: lowercase;
       margin-bottom: 15px;
@@ -445,6 +445,27 @@
 
     .category-header:hover {
       background: rgba(94, 179, 205, 0.05);
+    }
+
+    .category-info {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .category-icon {
+      width: 20px;
+      height: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .category-icon svg {
+      width: 20px;
+      height: 20px;
+      color: #5eb3cd;
     }
 
     .category-title {
@@ -808,7 +829,7 @@
       <div class="about-text-section">
         <div class="titles-left">
           <h1 class="site-title">Natalia Kashnitskaya</h1>
-          <p class="site-subtitle">monteuse vidéo</p>
+          <p class="site-subtitle">monteuse vidéo | créatrice de contenu digital</p>
         </div>
         <div class="about-text-hero">
           Je donne vie à vos projets avec sérieux, en respectant votre vision et vos délais.
@@ -823,7 +844,7 @@
           </div>
           <div class="titles">
             <h1 class="site-title">Natalia Kashnitskaya</h1>
-            <p class="site-subtitle">monteuse vidéo</p>
+            <p class="site-subtitle">monteuse vidéo | créatrice de contenu digital</p>
           </div>
         </div>
       </div>
@@ -888,8 +909,114 @@
         <div class="category-item">
           <button class="category-header" onclick="toggleCategory(this)">
             <div class="category-info">
-              <h3 class="category-title">Portrait</h3>
-              <span class="category-count">2 photos</span>
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M15,11V5L12,2L9,5V7H3V21H21V11H15M7,19V9H5V19H7M19,19H9V11H13V7H11V5.5L12,4.5L13,5.5V7H15V13H17V19H19Z"/>
+                </svg>
+              </div>
+              <div class="category-text">
+                <h3 class="category-title">ville</h3>
+                <span class="category-count">2 photos</span>
+              </div>
+            </div>
+            <div class="expand-arrow"></div>
+          </button>
+          <div class="category-content">
+            <div class="photos-grid">
+              <div class="photo-item">
+                <img src="images/preview San Gimignano.png" alt="Architecture urbaine" />
+                <div class="photo-overlay">
+                  <p class="photo-title">Architecture urbaine</p>
+                </div>
+              </div>
+              <div class="photo-item">
+                <img src="images/TBEC.png" alt="Scène de rue" />
+                <div class="photo-overlay">
+                  <p class="photo-title">Scène de rue</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-item">
+          <button class="category-header" onclick="toggleCategory(this)">
+            <div class="category-info">
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M17.5,12A1.5,1.5 0 0,1 16,10.5A1.5,1.5 0 0,1 17.5,9A1.5,1.5 0 0,1 19,10.5A1.5,1.5 0 0,1 17.5,12M10,4A4,4 0 0,1 14,8C14,8.91 13.69,9.75 13.18,10.43L12,12L10.82,10.43C10.31,9.75 10,8.91 10,8A4,4 0 0,1 10,4M2,20V22H22V20C22,17.79 20.21,16 18,16H6C3.79,16 2,17.79 2,20Z"/>
+                </svg>
+              </div>
+              <div class="category-text">
+                <h3 class="category-title">nature</h3>
+                <span class="category-count">2 photos</span>
+              </div>
+            </div>
+            <div class="expand-arrow"></div>
+          </button>
+          <div class="category-content">
+            <div class="photos-grid">
+              <div class="photo-item">
+                <img src="images/preview personnage.png" alt="Paysage naturel" />
+                <div class="photo-overlay">
+                  <p class="photo-title">Paysage naturel</p>
+                </div>
+              </div>
+              <div class="photo-item">
+                <img src="images/TBEC.png" alt="Forêt" />
+                <div class="photo-overlay">
+                  <p class="photo-title">Forêt</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-item">
+          <button class="category-header" onclick="toggleCategory(this)">
+            <div class="category-info">
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18.06 22.99h1.66c.84 0 1.53-.64 1.63-1.46L23 5.05h-5V1h-1.97v4.05h-4.97l.3 2.34c1.71.47 3.31 1.32 4.27 2.26 1.44 1.42 2.43 2.89 2.43 5.29v8.05zM1 21.99V21h15.03v.99c0 .54-.45.99-1.03.99H2.03c-.54 0-.99-.45-.99-.99z"/>
+                </svg>
+              </div>
+              <div class="category-text">
+                <h3 class="category-title">cuisine</h3>
+                <span class="category-count">2 photos</span>
+              </div>
+            </div>
+            <div class="expand-arrow"></div>
+          </button>
+          <div class="category-content">
+            <div class="photos-grid">
+              <div class="photo-item">
+                <img src="images/preview San Gimignano.png" alt="Plat gastronomique" />
+                <div class="photo-overlay">
+                  <p class="photo-title">Plat gastronomique</p>
+                </div>
+              </div>
+              <div class="photo-item">
+                <img src="images/preview personnage.png" alt="Dessert artisanal" />
+                <div class="photo-overlay">
+                  <p class="photo-title">Dessert artisanal</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="category-item">
+          <button class="category-header" onclick="toggleCategory(this)">
+            <div class="category-info">
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M12,19.2C9.5,19.2 7.29,17.92 6,16C6.03,14 10,12.9 12,12.9C14,12.9 17.97,14 18,16C16.71,17.92 14.5,19.2 12,19.2M12,5A3,3 0 0,1 15,8A3,3 0 0,1 12,11A3,3 0 0,1 9,8A3,3 0 0,1 12,5M12,2A10,10 0 0,0 2,12A10,10 0 0,0 12,22A10,10 0 0,0 22,12C22,6.47 17.5,2 12,2Z"/>
+                </svg>
+              </div>
+              <div class="category-text">
+                <h3 class="category-title">portrait</h3>
+                <span class="category-count">2 photos</span>
+              </div>
             </div>
             <div class="expand-arrow"></div>
           </button>
@@ -914,34 +1041,15 @@
         <div class="category-item">
           <button class="category-header" onclick="toggleCategory(this)">
             <div class="category-info">
-              <h3 class="category-title">Paysage</h3>
-              <span class="category-count">2 photos</span>
-            </div>
-            <div class="expand-arrow"></div>
-          </button>
-          <div class="category-content">
-            <div class="photos-grid">
-              <div class="photo-item">
-                <img src="images/preview San Gimignano.png" alt="Paysage urbain" />
-                <div class="photo-overlay">
-                  <p class="photo-title">Paysage urbain</p>
-                </div>
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M4.5,11L3,5L5.5,11M22,10A1,1 0 0,1 21,11H20A8,8 0 0,1 12,19C7.59,19 4,15.41 4,11A8,8 0 0,1 12,3A8,8 0 0,1 20,11A1,1 0 0,1 19,12H22A1,1 0 0,1 22,10M7.91,10C7.91,7.24 10.15,5 12.91,5C15.67,5 17.91,7.24 17.91,10"/>
+                </svg>
               </div>
-              <div class="photo-item">
-                <img src="images/preview personnage.png" alt="Paysage naturel" />
-                <div class="photo-overlay">
-                  <p class="photo-title">Paysage naturel</p>
-                </div>
+              <div class="category-text">
+                <h3 class="category-title">animaux</h3>
+                <span class="category-count">2 photos</span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="category-item">
-          <button class="category-header" onclick="toggleCategory(this)">
-            <div class="category-info">
-              <h3 class="category-title">Animaux</h3>
-              <span class="category-count">2 photos</span>
             </div>
             <div class="expand-arrow"></div>
           </button>
@@ -954,9 +1062,9 @@
                 </div>
               </div>
               <div class="photo-item">
-                <img src="images/preview San Gimignano.png" alt="Animal sauvage" />
+                <img src="images/preview San Gimignano.png" alt="Faune sauvage" />
                 <div class="photo-overlay">
-                  <p class="photo-title">Animal sauvage</p>
+                  <p class="photo-title">Faune sauvage</p>
                 </div>
               </div>
             </div>
@@ -966,23 +1074,30 @@
         <div class="category-item">
           <button class="category-header" onclick="toggleCategory(this)">
             <div class="category-info">
-              <h3 class="category-title">Architecture</h3>
-              <span class="category-count">2 photos</span>
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M18,18H6V6H18V18M18,4H6A2,2 0 0,0 4,6V18A2,2 0 0,0 6,20H18A2,2 0 0,0 20,18V6A2,2 0 0,0 18,4M12,7L10.5,9.5L9,7H7L10,12L7,17H9L10.5,14.5L12,17H14L11,12L14,7H12Z"/>
+                </svg>
+              </div>
+              <div class="category-text">
+                <h3 class="category-title">route</h3>
+                <span class="category-count">2 photos</span>
+              </div>
             </div>
             <div class="expand-arrow"></div>
           </button>
           <div class="category-content">
             <div class="photos-grid">
               <div class="photo-item">
-                <img src="images/preview personnage.png" alt="Architecture moderne" />
+                <img src="images/preview personnage.png" alt="Route de campagne" />
                 <div class="photo-overlay">
-                  <p class="photo-title">Architecture moderne</p>
+                  <p class="photo-title">Route de campagne</p>
                 </div>
               </div>
               <div class="photo-item">
-                <img src="images/TBEC.png" alt="Architecture historique" />
+                <img src="images/TBEC.png" alt="Autoroute urbaine" />
                 <div class="photo-overlay">
-                  <p class="photo-title">Architecture historique</p>
+                  <p class="photo-title">Autoroute urbaine</p>
                 </div>
               </div>
             </div>
@@ -992,34 +1107,15 @@
         <div class="category-item">
           <button class="category-header" onclick="toggleCategory(this)">
             <div class="category-info">
-              <h3 class="category-title">Nature morte</h3>
-              <span class="category-count">2 photos</span>
-            </div>
-            <div class="expand-arrow"></div>
-          </button>
-          <div class="category-content">
-            <div class="photos-grid">
-              <div class="photo-item">
-                <img src="images/preview San Gimignano.png" alt="Composition florale" />
-                <div class="photo-overlay">
-                  <p class="photo-title">Composition florale</p>
-                </div>
+              <div class="category-icon">
+                <svg viewBox="0 0 24 24" fill="currentColor">
+                  <path d="M5.5,7A1.5,1.5 0 0,1 4,5.5A1.5,1.5 0 0,1 5.5,4A1.5,1.5 0 0,1 7,5.5A1.5,1.5 0 0,1 5.5,7M21.41,11.58L12.41,2.58C12.05,2.22 11.55,2 11,2H4C2.89,2 2,2.89 2,4V11C2,11.55 2.22,12.05 2.59,12.41L11.58,21.41C11.95,21.78 12.45,22 13,22C13.55,22 14.05,21.78 14.41,21.41L21.41,14.41C21.78,14.05 22,13.55 22,13C22,12.45 21.78,11.95 21.41,11.58Z"/>
+                </svg>
               </div>
-              <div class="photo-item">
-                <img src="images/preview personnage.png" alt="Objets vintage" />
-                <div class="photo-overlay">
-                  <p class="photo-title">Objets vintage</p>
-                </div>
+              <div class="category-text">
+                <h3 class="category-title">divers</h3>
+                <span class="category-count">2 photos</span>
               </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="category-item">
-          <button class="category-header" onclick="toggleCategory(this)">
-            <div class="category-info">
-              <h3 class="category-title">Divers</h3>
-              <span class="category-count">2 photos</span>
             </div>
             <div class="expand-arrow"></div>
           </button>
@@ -1032,9 +1128,9 @@
                 </div>
               </div>
               <div class="photo-item">
-                <img src="images/preview San Gimignano.png" alt="Scène de rue" />
+                <img src="images/preview San Gimignano.png" alt="Art abstrait" />
                 <div class="photo-overlay">
-                  <p class="photo-title">Scène de rue</p>
+                  <p class="photo-title">Art abstrait</p>
                 </div>
               </div>
             </div>
@@ -1043,58 +1139,6 @@
       </div>
     </section>
   </main>
-
-  <script>
-    // Set current year
-    document.getElementById('year').textContent = new Date().getFullYear();
-
-    // Toggle category expansion
-    function toggleCategory(button) {
-      const categoryItem = button.closest('.category-item');
-      const isExpanded = categoryItem.classList.contains('expanded');
-      
-      // Close all other categories
-      document.querySelectorAll('.category-item').forEach(item => {
-        if (item !== categoryItem) {
-          item.classList.remove('expanded');
-        }
-      });
-      
-      // Toggle current category
-      if (isExpanded) {
-        categoryItem.classList.remove('expanded');
-      } else {
-        categoryItem.classList.add('expanded');
-      }
-    }
-
-    // Smooth scroll behavior
-    document.documentElement.style.scrollBehavior = 'smooth';
-
-    // Back to top functionality
-    function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
-    }
-
-    // Prevent context menu on photos
-    document.addEventListener('contextmenu', function(e) {
-      if (e.target.closest('.photo-item')) {
-        e.preventDefault();
-      }
-    });
-
-    // Optional: Close categories when clicking outside
-    document.addEventListener('click', function(e) {
-      if (!e.target.closest('.category-item')) {
-        document.querySelectorAll('.category-item').forEach(item => {
-          item.classList.remove('expanded');
-        });
-      }
-    });
-  </script></div>
 
   <footer class="site-footer">
     <div class="footer-content">
