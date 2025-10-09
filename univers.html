@@ -972,6 +972,7 @@
     </div>
   </footer>
 
+
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
 
@@ -989,6 +990,38 @@
         e.preventDefault();
       }
     });
+
+    // Сохранение позиции скролла при переходе на другую страницу
+    window.addEventListener('beforeunload', function() {
+      sessionStorage.setItem('scrollPosition', window.scrollY);
+      sessionStorage.setItem('lastPage', 'univers');
+    });
+
+    // Восстановление позиции скролла при загрузке страницы
+    window.addEventListener('load', function() {
+      const lastPage = sessionStorage.getItem('lastPage');
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      
+      // Восстанавливаем позицию только если пришли с другой страницы сайта
+      if (lastPage && lastPage !== 'univers' && savedPosition) {
+        setTimeout(function() {
+          window.scrollTo({
+            top: parseInt(savedPosition),
+            behavior: 'auto' // instant scroll без анимации
+          });
+        }, 0);
+      }
+    });
+
+    // Обновляем позицию при скролле (для точности)
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+      }, 100);
+    });
   </script>
+  
 </body>
 </html>
