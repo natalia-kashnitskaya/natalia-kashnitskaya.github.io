@@ -1102,7 +1102,18 @@
     </div>
   </footer>
 
-   <script>
+  <script>
+    // ВАЖНО: Восстанавливаем позицию ДО полной загрузки страницы
+    (function() {
+      const lastPage = sessionStorage.getItem('lastPage');
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      
+      if (lastPage && lastPage !== 'index' && savedPosition) {
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, parseInt(savedPosition));
+      }
+    })();
+
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
     
@@ -1116,31 +1127,23 @@
     };
     
     allNavLinks.forEach(link => {
-      // Only add the click listener for in-page navigation (href="#")
       if (link.getAttribute('href') === '#') {
         link.addEventListener('click', (e) => {
-          e.preventDefault(); // Prevent default browser action
-          // Remove active class from all links
+          e.preventDefault();
           allNavLinks.forEach(l => l.classList.remove('active'));
-          // Add active class to the clicked link
           link.classList.add('active');
-          // Hide all sections
           Object.values(sections).forEach(section => {
             if (section) section.style.display = 'none';
           });
-          // Show the target section
           const page = link.getAttribute('data-page');
           if (sections[page]) {
             sections[page].style.display = 'block';
           }
         });
       }
-      // No 'else' block is needed. Links without href="#" will perform
-      // their default action (navigating to a new page) because no
-      // event listener is attached to them here.
     });
     
-    // Video click functionality - ТОЛЬКО кнопка play открывает видео
+    // Video click functionality
     const playButtons = document.querySelectorAll('.play-button');
     playButtons.forEach(button => {
       const videoCard = button.closest('.video-card');
@@ -1156,14 +1159,12 @@
       });
     });
     
-    // Предотвращение контекстного меню на мобильных устройствах
     document.addEventListener('contextmenu', function(e) {
       if (e.target.closest('.preview')) {
         e.preventDefault();
       }
     });
     
-    // Предотвращение выделения текста при длинном нажатии
     document.addEventListener('selectstart', function(e) {
       if (e.target.closest('.preview')) {
         e.preventDefault();
@@ -1173,7 +1174,6 @@
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
     
-    // Back to top functionality
     function scrollToTop() {
       window.scrollTo({
         top: 0,
@@ -1181,30 +1181,12 @@
       });
     }
 
-    // ========== НОВЫЙ КОД: Сохранение позиции скролла ==========
-    
-    // Сохранение позиции скролла при переходе на другую страницу
+    // Сохранение позиции скролла
     window.addEventListener('beforeunload', function() {
       sessionStorage.setItem('scrollPosition', window.scrollY);
       sessionStorage.setItem('lastPage', 'index');
     });
 
-    // Восстановление позиции скролла при загрузке страницы
-    window.addEventListener('load', function() {
-      const lastPage = sessionStorage.getItem('lastPage');
-      const savedPosition = sessionStorage.getItem('scrollPosition');
-      
-      if (lastPage && lastPage !== 'index' && savedPosition) {
-        setTimeout(function() {
-          window.scrollTo({
-            top: parseInt(savedPosition),
-            behavior: 'auto'
-          });
-        }, 0);
-      }
-    });
-
-    // Обновляем позицию при скролле
     let scrollTimeout;
     window.addEventListener('scroll', function() {
       clearTimeout(scrollTimeout);
