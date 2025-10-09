@@ -973,9 +973,23 @@
   </footer>
 
 
-  <script>
+<script>
+    // ВАЖНО: Восстанавливаем позицию ДО полной загрузки страницы
+    (function() {
+      const lastPage = sessionStorage.getItem('lastPage');
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      
+      if (lastPage && lastPage !== 'univers' && savedPosition) {
+        // Отключаем smooth scroll временно
+        document.documentElement.style.scrollBehavior = 'auto';
+        // Мгновенно прокручиваем к сохраненной позиции
+        window.scrollTo(0, parseInt(savedPosition));
+      }
+    })();
+
     document.getElementById('year').textContent = new Date().getFullYear();
 
+    // Включаем smooth scroll обратно после загрузки
     document.documentElement.style.scrollBehavior = 'smooth';
 
     function scrollToTop() {
@@ -995,22 +1009,6 @@
     window.addEventListener('beforeunload', function() {
       sessionStorage.setItem('scrollPosition', window.scrollY);
       sessionStorage.setItem('lastPage', 'univers');
-    });
-
-    // Восстановление позиции скролла при загрузке страницы
-    window.addEventListener('load', function() {
-      const lastPage = sessionStorage.getItem('lastPage');
-      const savedPosition = sessionStorage.getItem('scrollPosition');
-      
-      // Восстанавливаем позицию только если пришли с другой страницы сайта
-      if (lastPage && lastPage !== 'univers' && savedPosition) {
-        setTimeout(function() {
-          window.scrollTo({
-            top: parseInt(savedPosition),
-            behavior: 'auto' // instant scroll без анимации
-          });
-        }, 0);
-      }
     });
 
     // Обновляем позицию при скролле (для точности)
