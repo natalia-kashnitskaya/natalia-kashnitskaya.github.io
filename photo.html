@@ -1141,9 +1141,9 @@
     </div>
   </footer>
 
-  <script>
+ <script>
     document.getElementById('year').textContent = new Date().getFullYear();
-
+    
     function toggleCategory(button) {
       const categoryItem = button.closest('.category-item');
       const isExpanded = categoryItem.classList.contains('expanded');
@@ -1160,22 +1160,22 @@
         categoryItem.classList.add('expanded');
       }
     }
-
+    
     document.documentElement.style.scrollBehavior = 'smooth';
-
+    
     function scrollToTop() {
       window.scrollTo({
         top: 0,
         behavior: 'smooth'
       });
     }
-
+    
     document.addEventListener('contextmenu', function(e) {
       if (e.target.closest('.photo-item')) {
         e.preventDefault();
       }
     });
-
+    
     document.addEventListener('click', function(e) {
       if (!e.target.closest('.category-item')) {
         document.querySelectorAll('.category-item').forEach(item => {
@@ -1183,6 +1183,39 @@
         });
       }
     });
+
+    // ========== НОВЫЙ КОД: Сохранение позиции скролла ==========
+    
+    // Сохранение позиции скролла при переходе на другую страницу
+    window.addEventListener('beforeunload', function() {
+      sessionStorage.setItem('scrollPosition', window.scrollY);
+      sessionStorage.setItem('lastPage', 'photo');
+    });
+
+    // Восстановление позиции скролла при загрузке страницы
+    window.addEventListener('load', function() {
+      const lastPage = sessionStorage.getItem('lastPage');
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      
+      if (lastPage && lastPage !== 'photo' && savedPosition) {
+        setTimeout(function() {
+          window.scrollTo({
+            top: parseInt(savedPosition),
+            behavior: 'auto'
+          });
+        }, 0);
+      }
+    });
+
+    // Обновляем позицию при скролле
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+      }, 100);
+    });
   </script>
+
 </body>
 </html>
