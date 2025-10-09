@@ -1102,10 +1102,10 @@
     </div>
   </footer>
 
-  <script>
+   <script>
     // Set current year
     document.getElementById('year').textContent = new Date().getFullYear();
-
+    
     // Navigation functionality
     const navLinks = document.querySelectorAll('.main-nav a');
     const allNavLinks = document.querySelectorAll('.main-nav a');
@@ -1114,24 +1114,20 @@
       'photos': document.getElementById('photos-section'),
       'univers': document.getElementById('univers-section')
     };
-
+    
     allNavLinks.forEach(link => {
       // Only add the click listener for in-page navigation (href="#")
       if (link.getAttribute('href') === '#') {
         link.addEventListener('click', (e) => {
           e.preventDefault(); // Prevent default browser action
-
           // Remove active class from all links
           allNavLinks.forEach(l => l.classList.remove('active'));
-
           // Add active class to the clicked link
           link.classList.add('active');
-
           // Hide all sections
           Object.values(sections).forEach(section => {
             if (section) section.style.display = 'none';
           });
-
           // Show the target section
           const page = link.getAttribute('data-page');
           if (sections[page]) {
@@ -1143,19 +1139,15 @@
       // their default action (navigating to a new page) because no
       // event listener is attached to them here.
     });
-
-
+    
     // Video click functionality - ТОЛЬКО кнопка play открывает видео
     const playButtons = document.querySelectorAll('.play-button');
-
     playButtons.forEach(button => {
       const videoCard = button.closest('.video-card');
       const videoUrl = videoCard.getAttribute('data-video-url');
-
       button.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-
         if (videoUrl && videoUrl !== '#') {
           window.open(videoUrl, '_blank');
         } else {
@@ -1163,24 +1155,24 @@
         }
       });
     });
-
+    
     // Предотвращение контекстного меню на мобильных устройствах
     document.addEventListener('contextmenu', function(e) {
       if (e.target.closest('.preview')) {
         e.preventDefault();
       }
     });
-
+    
     // Предотвращение выделения текста при длинном нажатии
     document.addEventListener('selectstart', function(e) {
       if (e.target.closest('.preview')) {
         e.preventDefault();
       }
     });
-
+    
     // Smooth scroll behavior
     document.documentElement.style.scrollBehavior = 'smooth';
-
+    
     // Back to top functionality
     function scrollToTop() {
       window.scrollTo({
@@ -1188,6 +1180,39 @@
         behavior: 'smooth'
       });
     }
+
+    // ========== НОВЫЙ КОД: Сохранение позиции скролла ==========
+    
+    // Сохранение позиции скролла при переходе на другую страницу
+    window.addEventListener('beforeunload', function() {
+      sessionStorage.setItem('scrollPosition', window.scrollY);
+      sessionStorage.setItem('lastPage', 'index');
+    });
+
+    // Восстановление позиции скролла при загрузке страницы
+    window.addEventListener('load', function() {
+      const lastPage = sessionStorage.getItem('lastPage');
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      
+      if (lastPage && lastPage !== 'index' && savedPosition) {
+        setTimeout(function() {
+          window.scrollTo({
+            top: parseInt(savedPosition),
+            behavior: 'auto'
+          });
+        }, 0);
+      }
+    });
+
+    // Обновляем позицию при скролле
+    let scrollTimeout;
+    window.addEventListener('scroll', function() {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(function() {
+        sessionStorage.setItem('scrollPosition', window.scrollY);
+      }, 100);
+    });
   </script>
+  
 </body>
 </html>
