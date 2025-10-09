@@ -1141,7 +1141,18 @@
     </div>
   </footer>
 
- <script>
+<script>
+    // ВАЖНО: Восстанавливаем позицию ДО полной загрузки страницы
+    (function() {
+      const lastPage = sessionStorage.getItem('lastPage');
+      const savedPosition = sessionStorage.getItem('scrollPosition');
+      
+      if (lastPage && lastPage !== 'photo' && savedPosition) {
+        document.documentElement.style.scrollBehavior = 'auto';
+        window.scrollTo(0, parseInt(savedPosition));
+      }
+    })();
+
     document.getElementById('year').textContent = new Date().getFullYear();
     
     function toggleCategory(button) {
@@ -1184,30 +1195,12 @@
       }
     });
 
-    // ========== НОВЫЙ КОД: Сохранение позиции скролла ==========
-    
-    // Сохранение позиции скролла при переходе на другую страницу
+    // Сохранение позиции скролла
     window.addEventListener('beforeunload', function() {
       sessionStorage.setItem('scrollPosition', window.scrollY);
       sessionStorage.setItem('lastPage', 'photo');
     });
 
-    // Восстановление позиции скролла при загрузке страницы
-    window.addEventListener('load', function() {
-      const lastPage = sessionStorage.getItem('lastPage');
-      const savedPosition = sessionStorage.getItem('scrollPosition');
-      
-      if (lastPage && lastPage !== 'photo' && savedPosition) {
-        setTimeout(function() {
-          window.scrollTo({
-            top: parseInt(savedPosition),
-            behavior: 'auto'
-          });
-        }, 0);
-      }
-    });
-
-    // Обновляем позицию при скролле
     let scrollTimeout;
     window.addEventListener('scroll', function() {
       clearTimeout(scrollTimeout);
